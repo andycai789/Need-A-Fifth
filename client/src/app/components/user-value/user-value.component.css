@@ -1,0 +1,89 @@
+.statement {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: gray;
+}
+
+.agree-text {
+    color: var(--green-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.disagree-text {
+    color: var(--red-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.opinion-spectrum {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.opinion-spectrum button {
+    width: 25px;
+    height: 25px;
+    outline-style: initial;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: white;
+    border: 2px solid grey;
+} 
+
+.opinion-spectrum button.agree {
+    border-color: var(--green-color);
+}
+
+.opinion-spectrum button.disagree {
+    border-color: var(--red-color);
+}
+
+.opinion-spectrum button:hover {
+    background-color: lightslategray;
+}
+
+.opinion-spectrum button.agree:hover {
+    background-color: var(--green-color);
+}
+
+.opinion-spectrum button.disagree:hover {
+    background-color: var(--red-color);
+}
+
+.opinion-spectrum .small {
+    width: 30px;
+    height: 30px;
+}
+
+.opinion-spectrum .medium {
+    width: 40px;
+    height: 40px;
+}
+
+.opinion-spectrum .large {
+    width: 50px;
+    height: 50px;
+}
+
+.opinion-label {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: auto;
+}
+
+.divider {
+    border-top: 1px solid gray;
+    margin: 50px auto;
+    width: 90%;
+}
+
+
+
+

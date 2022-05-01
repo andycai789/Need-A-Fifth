@@ -33,7 +33,6 @@
 // Y-Axis
 // Number of people in each group
 
-
 // Results should show a grid a people based on percentage
 // Each grid of people shows the answers you both share in common.
 // Leave the rest blank and find the biggest difference as possibly a hint
