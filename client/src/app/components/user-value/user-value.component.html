@@ -3,25 +3,15 @@
 <div class="opinion">
     <span class="disagree-text">Disagree</span>
 
-    <input class="disagree large" type="radio" name={{name}}>
-    <input class="disagree medium" type="radio" name={{name}}>
-    <input class="disagree small" type="radio" name={{name}}>
-    <input type="radio" name={{name}}>
-    <input class="agree small" type="radio" name={{name}}>
-    <input class="agree medium" type="radio" name={{name}}>
-    <input class="agree large" type="radio" name={{name}}>
+    <input class="disagree large" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="disagree medium" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="disagree small" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="neutral" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="agree small" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="agree medium" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
+    <input class="agree large" type="radio" name={{questionNumber}} (click)="emitOpinion($event)">
 
     <span class="agree-text">Agree&nbsp;&nbsp;&nbsp;</span>
 </div>
 
-    
 <div class="divider"></div>
-
-
-
-
-
-
-
-
-

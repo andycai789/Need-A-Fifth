@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-value',
@@ -8,19 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserValueComponent implements OnInit {
 
   @Input() statement? : string;
-
-
-  name: string = "first";
+  @Input() questionNumber? : number;
+  @Output() opinion = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-
-  }
-
-  test(): void {
-    console.log("I AM HERE")
+  emitOpinion(e: Event): void {
+    this.opinion.emit((e.target as Element).className)
   }
 
 
