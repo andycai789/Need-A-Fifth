@@ -14,4 +14,9 @@ export class UserValueComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  test(): void {
+    console.log("I AM HERE")
+  }
+
+
 }
