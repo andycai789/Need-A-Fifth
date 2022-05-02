@@ -9,9 +9,14 @@ export class UserValueComponent implements OnInit {
 
   @Input() statement? : string;
 
+
+  name: string = "first";
+
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
   test(): void {

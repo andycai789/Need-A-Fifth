@@ -18,7 +18,7 @@
     font-weight: 500;
 }
 
-.opinion-spectrum {
+.opinion {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,56 +26,63 @@
     margin: auto;
 }
 
-.opinion-spectrum button {
+.opinion input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid grey;
+}
+
+.opinion input.small {
     width: 25px;
     height: 25px;
-    outline-style: initial;
-    border-radius: 100px;
-    cursor: pointer;
-    background-color: white;
-    border: 2px solid grey;
-} 
-
-.opinion-spectrum button.agree {
-    border-color: var(--green-color);
 }
 
-.opinion-spectrum button.disagree {
-    border-color: var(--red-color);
+.opinion input.medium {
+    width: 35px;
+    height: 35px;
 }
 
-.opinion-spectrum button:hover {
-    background-color: lightslategray;
+.opinion input.large {
+    width: 45px;
+    height: 45px;
 }
 
-.opinion-spectrum button.agree:hover {
+.opinion input:checked {
+    background-color: gray;
+}
+
+.opinion input.agree:checked {
     background-color: var(--green-color);
 }
 
-.opinion-spectrum button.disagree:hover {
+.opinion input.disagree:checked {
     background-color: var(--red-color);
 }
 
-.opinion-spectrum .small {
-    width: 30px;
-    height: 30px;
+.opinion input.agree {
+    border: 2px solid var(--green-color)
 }
 
-.opinion-spectrum .medium {
-    width: 40px;
-    height: 40px;
+.opinion input.disagree {
+    border: 2px solid var(--red-color)
 }
 
-.opinion-spectrum .large {
-    width: 50px;
-    height: 50px;
+.opinion input:hover {
+    background-color: gray;
 }
 
-.opinion-label {
-    display: flex;
-    justify-content: space-between;
-    max-width: 500px;
-    margin: auto;
+.opinion input.agree:hover {
+    background-color: var(--green-color);
+}
+
+.opinion input.disagree:hover {
+    background-color: var(--red-color);
 }
 
 .divider {

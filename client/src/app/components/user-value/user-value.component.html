@@ -1,20 +1,21 @@
 <div class="statement"> {{statement}}</div>
 
-<div class="opinion-spectrum">
+<div class="opinion">
     <span class="disagree-text">Disagree</span>
-    <button (click)="test()" class="large disagree"> </button>
-    <button class="medium disagree"> </button>
-    <button class="small disagree"> </button>
-    <button> </button>
-    <button class="small agree"> </button>
-    <button class="medium agree"> </button>
-    <button class="large agree"> </button>
+
+    <input class="disagree large" type="radio" name={{name}}>
+    <input class="disagree medium" type="radio" name={{name}}>
+    <input class="disagree small" type="radio" name={{name}}>
+    <input type="radio" name={{name}}>
+    <input class="agree small" type="radio" name={{name}}>
+    <input class="agree medium" type="radio" name={{name}}>
+    <input class="agree large" type="radio" name={{name}}>
+
     <span class="agree-text">Agree&nbsp;&nbsp;&nbsp;</span>
 </div>
 
     
-<div class="divider">
-</div>
+<div class="divider"></div>
 
 
 
