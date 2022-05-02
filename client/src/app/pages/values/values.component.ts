@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./values.component.css']
 })
 export class ValuesComponent implements OnInit {
-
-
   index: number = 1;
 
   values: string[] = [
