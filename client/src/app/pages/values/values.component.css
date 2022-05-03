@@ -1,3 +1,24 @@
+.progress-bar {
+    position: sticky;
+    top: 61px;
+}
+
 .user-values {
     margin-top: 40px;
+}
+
+.submit-values-container {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-values {
+    margin: 20px 0px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    width: 100px;
+    background-color: black;
+    border-radius: 30px;
 }

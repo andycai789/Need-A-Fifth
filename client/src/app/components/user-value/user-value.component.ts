@@ -8,15 +8,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class UserValueComponent implements OnInit {
 
   @Input() statement? : string;
-  @Input() questionNumber? : number;
-  @Output() opinion = new EventEmitter<string>();
+  @Input() valueIndex? : number;
+  @Output() opinion = new EventEmitter<object>();
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  emitOpinion(e: Event): void {
-    this.opinion.emit((e.target as Element).className)
+  emitOpinion(opinionStrength: number): void {
+    this.opinion.emit(
+      {
+        opinion: opinionStrength,
+        valueIndex: this.valueIndex
+      }  
+    )
   }
 
 

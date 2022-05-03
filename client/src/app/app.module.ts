@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ValuesComponent } from './pages/values/values.component';
 import { UserValueComponent } from './components/user-value/user-value.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UserValueComponent } from './components/user-value/user-value.component
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
