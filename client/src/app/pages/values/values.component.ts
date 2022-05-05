@@ -8,8 +8,6 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
   styleUrls: ['./values.component.css']
 })
 export class ValuesComponent implements OnInit {
-  index: number = 1;
-
   values: string[] = [
     "Value 1",
     "Value 2",
@@ -48,7 +46,20 @@ export class ValuesComponent implements OnInit {
   }
 
   submitAnswers(): void {
-    console.log("SUBMIT")
-  }
+    this.answers.forEach((answer, index) => {
+      if (answer === -1) {
+        this.answers[index] = 3;
+      }
+    });
 
+    fetch('/answers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.answers),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+  }
 }

@@ -7,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserValueComponent implements OnInit {
 
-  @Input() statement? : string;
-  @Input() valueIndex? : number;
+  @Input() statement?: string;
+  @Input() valueIndex?: number;
   @Output() opinion = new EventEmitter<object>();
 
   constructor() { }
