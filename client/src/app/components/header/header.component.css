@@ -15,24 +15,11 @@
 }
 
 #logo {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
-    padding: 20px;
+    padding: 15px;
 }
 
 #logo:hover { 
     color: grey;
 }
-
-.right-links a {
-    font-size: 20px;
-    padding: 20px;
-}
-
-.right-links a:hover {
-    background-color: grey;
-}
-
-
-
-

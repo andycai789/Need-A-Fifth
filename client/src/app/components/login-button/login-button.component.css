@@ -1,0 +1,17 @@
+.login-button {
+    background-color: black;
+    color: white;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.login-button:hover {
+    background-color: grey;
+    border: 2px solid gray;
+}
+
+.login-button:focus {
+    border: 2px solid black;
+}

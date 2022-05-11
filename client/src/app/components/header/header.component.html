@@ -1,7 +1,5 @@
 <nav class="navbar">
     <a id="logo" routerLink=""> ProjectName </a>
-    
-    <div class="right-links">
-        <a id="login-link" routerLink="login"> Login </a>
-    </div>
+    <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
+    <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
 </nav>

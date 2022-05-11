@@ -1,2 +1,8 @@
 <div> Home Page Content </div>>
 <a routerLink="values"> go to values</a>
+
+<h1 *ngIf="auth.user$ | async as user">
+    Welcome back, 
+    {{user.name}}
+</h1>
+

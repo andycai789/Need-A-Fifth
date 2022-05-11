@@ -13,6 +13,11 @@ import { ValuesComponent } from './pages/values/values.component';
 import { UserValueComponent } from './components/user-value/user-value.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +27,18 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     LoginComponent,
     PageNotFoundComponent,
     ValuesComponent,
-    UserValueComponent
+    UserValueComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    AuthModule.forRoot({
+      ...env.auth,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
