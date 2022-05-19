@@ -1,4 +1,3 @@
-
 const db = require('./db');
 db.init();
 
@@ -8,16 +7,16 @@ const port = 3000;
 
 app.use(express.json());
 
-app.post('/test', (req, res) => {
-  console.log("GOT TESTA");
-  res.sendStatus(200);
-})
+app.put('/answers', (req, res) => {
+  db.upsertUserAnswers(req.body);
+  res.json(req.body);
+});
 
-app.post('/answers', (req, res) => {
-    db.insertUserValues(req.body);
-    res.json(req.body);
-})
+app.post('/similarUsers', async (req, res) => {
+  const result = await db.getExactSimilarUsers(req.body.email);
+  res.json(result);
+});
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
-})
+});

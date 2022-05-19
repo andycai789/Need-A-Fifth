@@ -2,7 +2,7 @@ const PROXY_CONFIG = [
   {
       context: [
           "/answers",
-          "/test"
+          "/similarUsers"
       ],
       target: "http://localhost:3000",
       secure: false

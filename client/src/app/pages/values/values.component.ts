@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-values',
@@ -24,17 +25,20 @@ export class ValuesComponent implements OnInit {
     "Value 13",
     "Value 14",
     "Value 15",
-  ]
+  ];
 
-  answers: number[] = Array(this.values.length).fill(-1)
-
+  answers: number[] = Array(this.values.length).fill(-1);
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';
-  percentage = 0;
+  percentage: number = 0;
+  userEmail!: string;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.auth.user$.subscribe(user => {
+      this.userEmail = user!.email!;
+    });
   }
 
   recordOpinion(e: any): void {
@@ -53,13 +57,14 @@ export class ValuesComponent implements OnInit {
     });
 
     fetch('/answers', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.answers),
+      body: JSON.stringify({email: this.userEmail, answers: this.answers}),
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 }
