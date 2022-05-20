@@ -1,0 +1,24 @@
+.profile {
+    background-color: grey;
+    width: 50%;
+    height: 500px;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.profile-firstName {
+    text-align: center;
+}
+
+.profile-answers {
+    text-align: center;
+}
+
+.profile-decision {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-compare {
+
+}

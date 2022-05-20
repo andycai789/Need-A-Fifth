@@ -9,6 +9,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class SearchComponent implements OnInit {
 
   userEmail!: string;
+  userAnswers!: Array<any>;
   people!: Array<any>;
 
   constructor(public auth: AuthService) { }
@@ -17,6 +18,8 @@ export class SearchComponent implements OnInit {
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
     });
+
+    this.findSimilarUsers();
   }
 
   findSimilarUsers(): void  {
@@ -29,8 +32,8 @@ export class SearchComponent implements OnInit {
     })
     .then(res => res.json())
     .then(data => {
-      this.people = data;
-      console.log(data);
+      this.people = data.peopleAnswers;
+      this.userAnswers = data.userAnswers
     })
     .catch((error) => {
       console.error('Error:', error);

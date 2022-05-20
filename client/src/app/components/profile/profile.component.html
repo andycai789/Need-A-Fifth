@@ -1,0 +1,32 @@
+<div class="profile">
+    <div class="profile-firstName">
+        {{firstName}}
+    </div>
+
+    <div class="profile-answers">
+        {{userAnswers}}
+    </div>
+
+    <div class="profile-compare">
+        <div>
+            Your answers
+        </div>
+        <span *ngFor="let answer of userAnswers">
+            {{answer}}
+        </span>
+        <div>
+            Their Answers
+        </div>
+        <span *ngFor="let answer of theirAnswers">
+            {{answer}}
+        </span>
+    </div>
+
+
+    <div class="profile-decision"> 
+        <button>Left</button>
+        <button>Right</button>
+    </div>
+
+
+</div>

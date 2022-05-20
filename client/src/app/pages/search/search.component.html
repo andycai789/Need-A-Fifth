@@ -1,10 +1,13 @@
-<p>search works!</p>
-<button (click)="findSimilarUsers()">
-    Find
-</button>
 
-<div *ngFor="let person of people"> 
-    {{person.email}}
-    {{person.answers}}
+
+<div *ngFor="let person of people">
+    <app-profile 
+        [firstName]="person.email" 
+        [theirAnswers]="person.answers"
+        [userAnswers]="userAnswers">
+    </app-profile>
+
 </div>
+
+
 

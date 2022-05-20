@@ -16,7 +16,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { LogoutButtonComponent } from './components/logout-button/logout-button.component'
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     ValuesComponent,
     UserValueComponent,
     LoginButtonComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

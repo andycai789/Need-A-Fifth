@@ -45,7 +45,7 @@ function isDisagree(answer) {
 }
 
 function getSimilarValuesFilter(answers) {
-    let filter = {}
+    let filter = {};
 
     for (let i = 0; i < answers.length; i++) {
         if (isAgree(answers[i])) {
@@ -65,7 +65,7 @@ async function getExactSimilarUsers(userEmail) {
         const filter = getSimilarValuesFilter(currentUser.answers);
         filter.email = { $ne: userEmail };
         const filteredUsers = await getFilteredUsers(filter);
-        return filteredUsers;
+        return {userAnswers: currentUser.answers, peopleAnswers: filteredUsers};
     } catch (e) {
         console.error(e);
     }
