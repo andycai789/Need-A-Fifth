@@ -20,6 +20,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component'
     MatProgressBarModule,
     AuthModule.forRoot({
       ...env.auth,
-    })
+    }),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

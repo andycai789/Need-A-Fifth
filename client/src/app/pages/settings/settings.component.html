@@ -1,26 +1,40 @@
 <div>
-    First Name:
+    Name: 
+    <input type="text" [(ngModel)]="name" maxlength="35">
 </div>
 
 <div>
     Gender Identity:
-    Female Male Non-binary Transgender Other Prefer not to say
+    <button> Female </button>
+    <button> Male </button>
+    <button> Non-binary </button>
+    <button> Transgender </button>
+    <button> Other </button>
 </div>
 
 <div>
-    Intention: discuss, friend, date
-</div>
-
-
-<div>
-    Interest: Talk with Any Female Male Non-binary Transgender Other
+    Intention: 
+    <button> Find a f </button>
+    <button> Find a d </button>
 </div>
 
 <div>
-    Picture Upload
+    Match with:
+    <button> Any </button>
+    <button> Female </button>
+    <button> Male </button>
+    <button> Non-binary </button>
+    <button> Transgender </button>
+    <button> Other </button>
+</div>
+
+<div>
+    Picture Upload:
+    <input type="file" accept="image/*">
+
 </div>
 
 
-<button>
+<button (click)="printSettings()">
     Save
 </button>
