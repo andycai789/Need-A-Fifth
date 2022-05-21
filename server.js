@@ -7,6 +7,14 @@ const port = 3000;
 
 app.use(express.json());
 
+app.put('/name', (req, res) => {
+  console.log(res.body);
+
+
+  res.json(req.body);
+})
+
+
 app.put('/answers', (req, res) => {
   db.upsertUserAnswers(req.body);
   res.json(req.body);

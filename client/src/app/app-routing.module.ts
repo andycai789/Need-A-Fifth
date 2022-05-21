@@ -6,11 +6,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { ValuesComponent } from './pages/values/values.component';
 import { SearchComponent } from './pages/search/search.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'values', component: ValuesComponent},
-  { path: 'search', component: SearchComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard/settings', component: SettingsComponent},
+  { path: 'dashboard/values', component: ValuesComponent},
+  { path: 'dashboard/search', component: SearchComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

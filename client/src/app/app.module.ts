@@ -17,7 +17,9 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
-import { ProfileComponent } from './components/profile/profile.component'
+import { ProfileComponent } from './components/profile/profile.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ProfileComponent } from './components/profile/profile.component'
     UserValueComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

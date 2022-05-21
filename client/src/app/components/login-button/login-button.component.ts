@@ -14,7 +14,8 @@ export class LoginButtonComponent implements OnInit {
   }
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+    this.auth.loginWithRedirect({
+      appState: { target: '/dashboard' }
+    });
   }
-
 }
