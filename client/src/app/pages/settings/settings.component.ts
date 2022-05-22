@@ -9,16 +9,34 @@ import { Component, OnInit } from '@angular/core';
 
 export class SettingsComponent implements OnInit {
 
-  name = '';
+  name: string = '';
+  gender: string = '';
+  preferences: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  printSettings() {
-    console.log("I AM HERE");
+  setGender(gender: string) {
+    this.gender = gender;
+  }
+
+  changePreferences(preference: string) {
+    const index: number = this.preferences.indexOf(preference);
+
+    if (index > -1) {
+      this.preferences.splice(index, 1);
+      this.preferences = [...this.preferences];
+    } else {
+      this.preferences = [...this.preferences, preference];
+    }
+  }
+
+  saveSettings() {
     console.log(this.name);
+    console.log(this.gender);
+    console.log(this.preferences);
   }
 
 }

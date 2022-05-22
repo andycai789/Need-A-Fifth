@@ -1,0 +1,12 @@
+.photo-container {
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.photo-container:hover {
+    background-color: darkgray;
+}
+

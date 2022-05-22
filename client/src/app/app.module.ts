@@ -21,6 +21,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { FormsModule } from '@angular/forms';
+import { PhotoComponent } from './components/photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     LogoutButtonComponent,
     ProfileComponent,
     SettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,

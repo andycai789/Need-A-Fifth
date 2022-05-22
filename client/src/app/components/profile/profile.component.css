@@ -1,9 +1,9 @@
 .profile {
-    background-color: grey;
     width: 50%;
     height: 500px;
     margin: 10px auto;
     border-radius: 10px;
+    border: 1px solid black;
 }
 
 .profile-firstName {

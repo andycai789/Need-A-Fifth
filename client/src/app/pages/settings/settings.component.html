@@ -1,40 +1,51 @@
-<div>
-    Name: 
-    <input type="text" [(ngModel)]="name" maxlength="35">
+<div class="settings">
+    <div>
+        Settings 
+    </div>
+    <div>
+        Display Name: 
+        <input type="text" [(ngModel)]="name" maxlength="35">
+    </div><br>
+    <div>
+        Gender Identity:
+        <button (click)="setGender('female')"> Female </button>
+        <button (click)="setGender('male')"> Male </button>
+        <button (click)="setGender('other')"> Other </button>
+    </div><br>
+
+    <div>
+        Match Preferences:
+        <button (click)="changePreferences('female')"> Female </button>
+        <button (click)="changePreferences('male')"> Male </button>
+        <button (click)="changePreferences('other')"> Other </button>
+    </div><br>
+
+
+    <div>
+        Upload Photos (Optional):
+    </div>
+    <div class="photos-upload-container">
+        <app-photo></app-photo>
+        <app-photo></app-photo>
+
+        <app-photo></app-photo>
+        <app-photo></app-photo>
+        <app-photo></app-photo>
+        <app-photo></app-photo>
+    </div><br>
+
+    <button [routerLink]="['/dashboard']" (click)="saveSettings()" >
+        Save
+    </button>
 </div>
 
-<div>
-    Gender Identity:
-    <button> Female </button>
-    <button> Male </button>
-    <button> Non-binary </button>
-    <button> Transgender </button>
-    <button> Other </button>
-</div>
-
-<div>
-    Intention: 
-    <button> Find a f </button>
-    <button> Find a d </button>
-</div>
-
-<div>
-    Match with:
-    <button> Any </button>
-    <button> Female </button>
-    <button> Male </button>
-    <button> Non-binary </button>
-    <button> Transgender </button>
-    <button> Other </button>
-</div>
-
-<div>
-    Picture Upload:
-    <input type="file" accept="image/*">
-
-</div>
 
 
-<button (click)="printSettings()">
-    Save
-</button>
+
+
+
+
+
+
+
+

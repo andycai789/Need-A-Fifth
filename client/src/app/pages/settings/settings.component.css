@@ -1,0 +1,16 @@
+.settings {
+    width: 60%;
+    padding: 30px;
+    margin: 100px auto;
+    border-radius: 10px;
+    border: 1px solid black;
+    max-width: 600px;
+
+}
+
+.photos-upload-container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
