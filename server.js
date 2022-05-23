@@ -9,8 +9,6 @@ app.use(express.json());
 
 app.put('/name', (req, res) => {
   console.log(res.body);
-
-
   res.json(req.body);
 })
 

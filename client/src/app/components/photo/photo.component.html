@@ -1,3 +1,18 @@
-<div class="photo-container">
+<label class="photo-container">
+    <div *ngIf="url === ''; else displayPhoto"> 
+        <input type="file" accept="image/*" (change)="selectFile($event)"/>
+        +
+    </div>
 
-</div>
+    <ng-template #displayPhoto>
+        <input type="file" accept="image/*" (change)="selectFile($event)"/>
+        <img [src]="url" style='height: 100%; width: 100%; object-fit: contain'>
+    </ng-template>
+
+</label>
+
+
+
+
+
+

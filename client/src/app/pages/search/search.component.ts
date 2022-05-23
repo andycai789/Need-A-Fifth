@@ -17,9 +17,8 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
+      this.findSimilarUsers();
     });
-
-    this.findSimilarUsers();
   }
 
   findSimilarUsers(): void  {

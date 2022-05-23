@@ -2,11 +2,27 @@
     margin: 10px;
     width: 150px;
     height: 150px;
-    border: 1px solid gray;
+    border: 1px dashed gray;
     border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: gray;
+
+}
+
+#test {
+    max-width:100%;
+    max-height:100%;
 }
 
 .photo-container:hover {
     background-color: darkgray;
+    border: 1px solid black;
 }
 
+input[type="file"] {
+    display: none;
+}
