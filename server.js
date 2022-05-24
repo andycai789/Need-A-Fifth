@@ -2,16 +2,22 @@ const db = require('./db');
 db.init();
 
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.put('/images/:userEmail', fileUpload(), (req, res) => {
+  console.log(req.files);
 
-app.put('/name', (req, res) => {
-  console.log(res.body);
-  res.json(req.body);
+  res.end();
 })
 
+app.use(express.json());
+
+app.put('/settings/:userEmail', (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
+})
 
 app.put('/answers', (req, res) => {
   db.upsertUserAnswers(req.body);
@@ -26,3 +32,4 @@ app.post('/similarUsers', async (req, res) => {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+

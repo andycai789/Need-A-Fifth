@@ -24,12 +24,12 @@
         Upload Photos (Optional):
     </div>
     <div class="photos-upload-container">
-        <app-photo></app-photo>
-        <app-photo></app-photo>
-        <app-photo></app-photo>
-        <app-photo></app-photo>
-        <app-photo></app-photo>
-        <app-photo></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 0)"></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 1)"></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 2)"></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 3)"></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 4)"></app-photo>
+        <app-photo (newImageFile)="addImageFile($event, 5)"></app-photo>
     </div><br>
 
     <button [routerLink]="['/dashboard']" (click)="saveSettings()" >

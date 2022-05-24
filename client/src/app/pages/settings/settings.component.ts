@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-settings',
@@ -12,10 +13,19 @@ export class SettingsComponent implements OnInit {
   name: string = '';
   gender: string = '';
   preferences: string[] = [];
+  images: File[] = [];
+  userEmail!: string;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
+
+    this.auth.user$.subscribe(user => {
+      this.userEmail = user!.email!;
+    });
+    // fetch data for name gender preference and pictures
+    // set them
+    // get out of loading phases for each element
   }
 
   setGender(gender: string) {
@@ -33,10 +43,42 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  saveSettings() {
-    console.log(this.name);
-    console.log(this.gender);
-    console.log(this.preferences);
+  addImageFile(file: File, index: number): void {
+    this.images[index] = file;
   }
 
+  saveSettings() {
+    this.uploadSettings();
+    this.uploadImages();
+  }
+
+  uploadSettings() {
+    fetch(`/settings/${this.userEmail}`, {
+      method: "PUT",
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name: this.name, gender: this.gender, preferences: this.preferences })
+    })
+    .catch((error) => {
+      console.error('Error in uploadSettings:', error);
+    });
+  }
+
+  uploadImages() {
+    const formData : FormData = new FormData();
+
+    this.images.forEach(image => {
+      formData.append("images", image);
+    });
+
+    formData.forEach(thing => {
+      console.log(thing)
+    })
+
+    fetch(`/images/${this.userEmail}`, {
+      method: "PUT",
+      body: formData
+    })
+  }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-photo',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class PhotoComponent implements OnInit {
 
   url: string = "";
+  @Output() newImageFile = new EventEmitter();
 
   constructor() { }
 
@@ -21,6 +23,7 @@ export class PhotoComponent implements OnInit {
       reader.onload = (event: any) => {
         this.url = event.target.result;
       }
+      this.newImageFile.emit(event.target.files[0]);
     }
   }
 }
