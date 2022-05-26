@@ -2,14 +2,18 @@ const db = require('./db');
 db.init();
 
 const express = require('express');
-const fileUpload = require('express-fileupload');
 const app = express();
 const port = 3000;
 
-app.put('/images/:userEmail', fileUpload(), (req, res) => {
-  console.log(req.files);
+const multer  = require('multer')
+const storage = multer.memoryStorage(); 
+const upload = multer({ storage: storage });
 
-  res.end();
+app.put('/images/:userEmail', upload.array('images', 6), (req, res) => {
+
+  db.upsertUserPhotos(req.params.userEmail, req.files);
+
+  res.json("");
 })
 
 app.use(express.json());

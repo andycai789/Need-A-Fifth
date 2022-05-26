@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { Buffer } from 'buffer';
+
 
 @Component({
   selector: 'app-settings',
@@ -65,6 +67,10 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+
+  thing: any;
+  thinglink: any;
+
   uploadImages() {
     const formData : FormData = new FormData();
 
@@ -72,13 +78,22 @@ export class SettingsComponent implements OnInit {
       formData.append("images", image);
     });
 
-    formData.forEach(thing => {
-      console.log(thing)
-    })
-
     fetch(`/images/${this.userEmail}`, {
       method: "PUT",
       body: formData
     })
+    .then(res => res.json())
+    .then(data => {
+
+      this.thing = data;
+      console.log(this.thing)
+
+      this.thinglink = `data:${this.thing.mimetype};base64,${Buffer.from(this.thing.buffer).toString('base64')}`
+
+      console.log(this.thinglink)
+    }
+      
+      
+      ) ;
   }
 }

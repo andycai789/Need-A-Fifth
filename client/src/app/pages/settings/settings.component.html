@@ -31,15 +31,20 @@
         <app-photo (newImageFile)="addImageFile($event, 4)"></app-photo>
         <app-photo (newImageFile)="addImageFile($event, 5)"></app-photo>
     </div><br>
-
-    <button [routerLink]="['/dashboard']" (click)="saveSettings()" >
+<!-- [routerLink]="['/dashboard']" -->
+    <button  (click)="saveSettings()" >
         Save
     </button>
 </div>
 
 
+<div *ngIf="thing !== undefined"> 
 
+    <img
+        [src]="thinglink"
+    />
 
+</div>
 
 
 

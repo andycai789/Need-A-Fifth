@@ -1,26 +1,41 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient, GridFSBucket } = require('mongodb')
+const { Readable } = require('stream');
 
 const url = "mongodb+srv://Me:XHD1QCGaBf7i6LLl@cluster0.rutxd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 let userValuesCollection;
+let bucket;
 
-async function insertBots() {
-    for (let i = 0; i < 10000; i++) {
-      let bot = {
-        email: `bot${i}@gmail.com`, 
-        answers: Array.from({length: 15}, () => Math.floor(Math.random() * 7))
-      }
-      await upsertUserAnswers(bot);
-    }
-}
-  
+
+
 async function init() {
     try {
         await client.connect();
         userValuesCollection = client.db("project2").collection("user_values");
+        bucket = new GridFSBucket(client.db("project2"), { bucketName: 'photo_bucket' });
     } catch (e){
         console.error(e);
     } 
+}
+
+async function upsertUserPhotos(email, photos) {
+    try {
+        const cursor = bucket.find({"metadata.email": email});
+        await cursor.forEach(doc => {
+            bucket.delete(doc._id);
+        });
+        
+        photos.forEach(async (photo, index) => {
+            const stream = Readable.from(photo.buffer.toString());
+
+            stream.pipe(bucket.openUploadStream(`${email}-photo${index}`, {
+                chunkSizeBytes: 1048576,
+                metadata: { email: email, mimetype: photo.mimetype }
+            }));
+        })
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 async function upsertUserAnswers(userInfo) {
@@ -81,6 +96,17 @@ async function getFilteredUsers(filter) {
     }
 }
 
+// async function insertBots() {
+//     for (let i = 0; i < 10000; i++) {
+//       let bot = {
+//         email: `bot${i}@gmail.com`, 
+//         answers: Array.from({length: 15}, () => Math.floor(Math.random() * 7))
+//       }
+//       await upsertUserAnswers(bot);
+//     }
+// }
+
 exports.init = init;
 exports.upsertUserAnswers = upsertUserAnswers;
 exports.getExactSimilarUsers = getExactSimilarUsers;
+exports.upsertUserPhotos = upsertUserPhotos;
