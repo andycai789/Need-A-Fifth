@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ValuesComponent } from './pages/values/values.component';
 import { UserValueComponent } from './components/user-value/user-value.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
@@ -45,6 +47,7 @@ import { PhotoComponent } from './components/photo/photo.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    MatButtonToggleModule,
     AuthModule.forRoot({
       ...env.auth,
     }),

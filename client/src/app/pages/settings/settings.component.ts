@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Buffer } from 'buffer';
 
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-
 
 export class SettingsComponent implements OnInit {
 
@@ -17,32 +15,54 @@ export class SettingsComponent implements OnInit {
   preferences: string[] = [];
   images: File[] = [];
   userEmail!: string;
-
+  thing: any;
+  thinglink: any;
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
 
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
+
+      fetch(`/settings/${this.userEmail}`)
+        .then(res => res.json())
+        .then(data => {
+          this.name = data.name;
+          this.gender = data.gender;
+          this.preferences = data.preferences;
+        })
+        .catch(error => console.error(error))
+
+      fetch(`/images/${this.userEmail}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          this.thing = "something";
+          this.thinglink = `data:${data.type};base64,${Buffer.from(data.buffer).toString('base64')}`
+        })
+        .catch(error => console.error(error));
     });
-    // fetch data for name gender preference and pictures
-    // set them
-    // get out of loading phases for each element
   }
 
-  setGender(gender: string) {
-    this.gender = gender;
+  isGender(gender: string) {
+    return this.gender === gender;
   }
 
-  changePreferences(preference: string) {
-    const index: number = this.preferences.indexOf(preference);
+  hasPref(gender: string) {
+    return this.preferences.includes(gender);
+  }
 
-    if (index > -1) {
-      this.preferences.splice(index, 1);
-      this.preferences = [...this.preferences];
-    } else {
-      this.preferences = [...this.preferences, preference];
-    }
+
+  setGender(gender: any) {
+    this.gender = gender.value;
+    console.log(this.gender);
+  }
+
+  changePreferences(preferences: any) {
+    this.preferences = preferences.value;
+
+    console.log(this.preferences);
+
   }
 
   addImageFile(file: File, index: number): void {
@@ -68,8 +88,7 @@ export class SettingsComponent implements OnInit {
   }
 
 
-  thing: any;
-  thinglink: any;
+
 
   uploadImages() {
     const formData : FormData = new FormData();
@@ -84,16 +103,8 @@ export class SettingsComponent implements OnInit {
     })
     .then(res => res.json())
     .then(data => {
-
-      this.thing = data;
-      console.log(this.thing)
-
-      this.thinglink = `data:${this.thing.mimetype};base64,${Buffer.from(this.thing.buffer).toString('base64')}`
-
-      console.log(this.thinglink)
-    }
-      
-      
-      ) ;
+      // this.thing = data;
+      // this.thinglink = `data:${this.thing.mimetype};base64,${Buffer.from(this.thing.buffer).toString('base64')}`
+    });
   }
 }

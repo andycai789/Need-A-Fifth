@@ -19,7 +19,7 @@
 }
 
 .photo-container:hover {
-    background-color: darkgray;
+    background-color: rgb(235, 235, 235);
     border: 1px solid black;
 }
 

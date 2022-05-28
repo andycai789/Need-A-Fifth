@@ -7,17 +7,21 @@
         <input type="text" [(ngModel)]="name" maxlength="35">
     </div><br>
     <div>
-        Gender Identity:
-        <button (click)="setGender('female')"> Female </button>
-        <button (click)="setGender('male')"> Male </button>
-        <button (click)="setGender('other')"> Other </button>
+        GI:
+        <mat-button-toggle-group (change)="setGender($event)" name="gender" aria-label="Gender">
+            <mat-button-toggle [checked]="isGender('female')" value="female">Female</mat-button-toggle>
+            <mat-button-toggle [checked]="isGender('male')" value="male">Male</mat-button-toggle>
+            <mat-button-toggle [checked]="isGender('other')" value="other">Other</mat-button-toggle>
+        </mat-button-toggle-group>
     </div><br>
 
     <div>
-        Match Preferences:
-        <button (click)="changePreferences('female')"> Female </button>
-        <button (click)="changePreferences('male')"> Male </button>
-        <button (click)="changePreferences('other')"> Other </button>
+        MP:
+        <mat-button-toggle-group (change)="changePreferences($event)" name="preferences" aria-label="Preferences" multiple>
+            <mat-button-toggle [checked]="hasPref('female')" value="female">Female</mat-button-toggle>
+            <mat-button-toggle [checked]="hasPref('male')" value="male">Male</mat-button-toggle>
+            <mat-button-toggle [checked]="hasPref('other')" value="other">Other</mat-button-toggle>
+          </mat-button-toggle-group>
     </div><br>
 
     <div>
@@ -39,7 +43,7 @@
 
 
 <div *ngIf="thing !== undefined"> 
-
+    HELLO WORLD
     <img
         [src]="thinglink"
     />
