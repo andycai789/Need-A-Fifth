@@ -16,53 +16,55 @@ async function init() {
     } 
 }
 
-async function getUserPhotos(email) {
+function getPhotoName(email, index) {
+    return `${email}-photo${index}`;
+}
+
+async function downloadPhotoToBuffer(doc) {
+    return new Promise((resolve, reject) => {
+        let bucketStream = bucket.openDownloadStream(doc._id);
+        bucketStream.on('data', chunk => {
+            resolve({type: doc.metadata.mimetype, buffer: chunk});
+        });
+        bucketStream.on('error', () => {
+            reject("Error: GridFS openDownloadStream failed.");
+        });
+    });
+}
+
+async function getPhotoBuffer(doc) {
+    return await downloadPhotoToBuffer(doc);;
+}
+
+async function getUserPhoto(email, index) {
     try {
-        const cursor = bucket.find({"metadata.email": email});
-        let info = {}
+        const fileName = getPhotoName(email, index);
+        const doc = await bucket.find({"filename": fileName}).toArray();
 
-        let result = await new Promise( (resolve, reject) => {
-            cursor.forEach(doc => {
-                bucket.openDownloadStreamByName("project2stack@gmail.com-photo0").on('data', chunk => {
-                    info.type = doc.metadata.mimetype;
-                    info.buffer = chunk;
-                    resolve(info);
-                    console.log(info)
-                })
-            })
-
-
-        })
+        if (doc.length === 0) {
+            return;
+        }
         
-        
-    
-
-        return result;
-
-        // problem with pressing save multiple times
-
-        // bucket.openDownloadStreamByName('myFile').
-        // pipe(fs.createWriteStream('./outputFile'));
+        return getPhotoBuffer(doc[0]);
     } catch (e) {
         console.error(e);
     }
 }
 
-
-async function deleteUserPhotos(email) {
-    const cursor = bucket.find({"metadata.email": email});
-    await cursor.forEach(doc => {
-        bucket.delete(doc._id);
-    });
+async function deleteOldUserPhotos(photos) {
+    photos.forEach(photo => {
+        const cursor = bucket.find({filename: photo.originalname});
+        cursor.forEach(doc => {
+            bucket.delete(doc._id);
+        })
+    })
 }
 
 async function insertUserPhotos(email, photos) {
-    photos.forEach((photo, index) => {
+    photos.forEach((photo) => {
         const stream = Readable.from(photo.buffer);
 
-        console.log(photo.buffer);
-
-        stream.pipe(bucket.openUploadStream(`${email}-photo${index}`, {
+        stream.pipe(bucket.openUploadStream(`${photo.originalname}`, {
             chunkSizeBytes: 1048576,
             metadata: { email: email, mimetype: photo.mimetype }
         }));
@@ -71,7 +73,7 @@ async function insertUserPhotos(email, photos) {
 
 async function upsertUserPhotos(email, photos) {
     try {
-        await deleteUserPhotos(email);
+        await deleteOldUserPhotos(photos);
         await insertUserPhotos(email, photos);
     } catch (e) {
         console.error(e);
@@ -175,4 +177,4 @@ exports.getExactSimilarUsers = getExactSimilarUsers;
 exports.upsertUserPhotos = upsertUserPhotos;
 exports.upsertUserSettings = upsertUserSettings;
 exports.getUserSettings = getUserSettings;
-exports.getUserPhotos = getUserPhotos;
+exports.getUserPhoto = getUserPhoto;

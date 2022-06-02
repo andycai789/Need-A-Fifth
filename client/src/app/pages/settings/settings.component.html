@@ -9,45 +9,34 @@
     <div>
         GI:
         <mat-button-toggle-group (change)="setGender($event)" name="gender" aria-label="Gender">
-            <mat-button-toggle [checked]="isGender('female')" value="female">Female</mat-button-toggle>
-            <mat-button-toggle [checked]="isGender('male')" value="male">Male</mat-button-toggle>
-            <mat-button-toggle [checked]="isGender('other')" value="other">Other</mat-button-toggle>
+            <ng-container *ngFor="let gender of listOfGenders">
+                <mat-button-toggle [checked]="isGender(gender)" [value]="gender">{{gender}}</mat-button-toggle>
+            </ng-container>
         </mat-button-toggle-group>
     </div><br>
 
     <div>
         MP:
-        <mat-button-toggle-group (change)="changePreferences($event)" name="preferences" aria-label="Preferences" multiple>
-            <mat-button-toggle [checked]="hasPref('female')" value="female">Female</mat-button-toggle>
-            <mat-button-toggle [checked]="hasPref('male')" value="male">Male</mat-button-toggle>
-            <mat-button-toggle [checked]="hasPref('other')" value="other">Other</mat-button-toggle>
-          </mat-button-toggle-group>
+        <mat-button-toggle-group (change)="setPreferences($event)" name="preferences" aria-label="Preferences" multiple>
+            <ng-container *ngFor="let pref of listOfPreferences">
+                <mat-button-toggle [checked]="hasPref(pref)" [value]="pref">{{pref}}</mat-button-toggle>
+            </ng-container>
+        </mat-button-toggle-group>
     </div><br>
 
     <div>
         Upload Photos (Optional):
     </div>
+
     <div class="photos-upload-container">
-        <app-photo (newImageFile)="addImageFile($event, 0)"></app-photo>
-        <app-photo (newImageFile)="addImageFile($event, 1)"></app-photo>
-        <app-photo (newImageFile)="addImageFile($event, 2)"></app-photo>
-        <app-photo (newImageFile)="addImageFile($event, 3)"></app-photo>
-        <app-photo (newImageFile)="addImageFile($event, 4)"></app-photo>
-        <app-photo (newImageFile)="addImageFile($event, 5)"></app-photo>
+        <ng-container *ngFor="let _ of [].constructor(6); let i = index">
+            <app-photo [index] = "i" (newImageFile)="addImageFile($event, i)"></app-photo>
+        </ng-container>
     </div><br>
 <!-- [routerLink]="['/dashboard']" -->
-    <button  (click)="saveSettings()" >
+    <button (click)="saveSettings()" >
         Save
     </button>
-</div>
-
-
-<div *ngIf="thing !== undefined"> 
-    HELLO WORLD
-    <img
-        [src]="thinglink"
-    />
-
 </div>
 
 

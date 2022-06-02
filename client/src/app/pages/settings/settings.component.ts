@@ -9,18 +9,17 @@ import { Buffer } from 'buffer';
 })
 
 export class SettingsComponent implements OnInit {
-
+  userEmail!: string;
+  listOfGenders: string[] = ['Female', 'Male', 'Other'];
+  listOfPreferences: string[] = ['Female', 'Male', 'Other'];
   name: string = '';
   gender: string = '';
   preferences: string[] = [];
   images: File[] = [];
-  userEmail!: string;
-  thing: any;
-  thinglink: any;
+
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
-
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
 
@@ -30,15 +29,6 @@ export class SettingsComponent implements OnInit {
           this.name = data.name;
           this.gender = data.gender;
           this.preferences = data.preferences;
-        })
-        .catch(error => console.error(error))
-
-      fetch(`/images/${this.userEmail}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          this.thing = "something";
-          this.thinglink = `data:${data.type};base64,${Buffer.from(data.buffer).toString('base64')}`
         })
         .catch(error => console.error(error));
     });
@@ -52,17 +42,12 @@ export class SettingsComponent implements OnInit {
     return this.preferences.includes(gender);
   }
 
-
   setGender(gender: any) {
     this.gender = gender.value;
-    console.log(this.gender);
   }
 
-  changePreferences(preferences: any) {
+  setPreferences(preferences: any) {
     this.preferences = preferences.value;
-
-    console.log(this.preferences);
-
   }
 
   addImageFile(file: File, index: number): void {
@@ -87,14 +72,11 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-
-
-
   uploadImages() {
     const formData : FormData = new FormData();
 
-    this.images.forEach(image => {
-      formData.append("images", image);
+    this.images.forEach((image, index) => {
+      formData.append("images", image, `${this.userEmail}-photo${index}`);
     });
 
     fetch(`/images/${this.userEmail}`, {
