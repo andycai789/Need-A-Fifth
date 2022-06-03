@@ -23,9 +23,16 @@ function getPhotoName(email, index) {
 async function downloadPhotoToBuffer(doc) {
     return new Promise((resolve, reject) => {
         let bucketStream = bucket.openDownloadStream(doc._id);
+        let bufs = [];
+
         bucketStream.on('data', chunk => {
-            resolve({type: doc.metadata.mimetype, buffer: chunk});
+            bufs.push(chunk);
         });
+
+        bucketStream.on('end', () => {
+            resolve({type: doc.metadata.mimetype, buffer: Buffer.concat(bufs)});
+        });
+
         bucketStream.on('error', () => {
             reject("Error: GridFS openDownloadStream failed.");
         });

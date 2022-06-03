@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-photo',
@@ -23,9 +24,9 @@ export class PhotoComponent implements OnInit {
       fetch(`/images/${this.userEmail}/${this.index}`)
         .then(res => res.json())
         .then(data => {
-          console.log(this.index);
-          console.log(data);
-          // let x = `data:${data.type};base64,${Buffer.from(data.buffer).toString('base64')}`
+          if (data.type !== undefined) {
+            this.url = `data:${data.type};base64,${Buffer.from(data.buffer).toString('base64')}`
+          }
         })
         .catch(error => console.error(error));
     });

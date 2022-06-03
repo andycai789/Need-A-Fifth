@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-settings',
@@ -55,7 +54,7 @@ export class SettingsComponent implements OnInit {
   }
 
   saveSettings() {
-    this.uploadSettings();
+    this.uploadSettings(); 
     this.uploadImages();
   }
 
@@ -72,6 +71,7 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+
   uploadImages() {
     const formData : FormData = new FormData();
 
@@ -82,11 +82,8 @@ export class SettingsComponent implements OnInit {
     fetch(`/images/${this.userEmail}`, {
       method: "PUT",
       body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      // this.thing = data;
-      // this.thinglink = `data:${this.thing.mimetype};base64,${Buffer.from(this.thing.buffer).toString('base64')}`
+    }).catch((error) => {
+      console.error('Error in uploadImages:', error);
     });
   }
 }

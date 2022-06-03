@@ -10,7 +10,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.put('/images/:userEmail', upload.array('images', 6), (req, res) => {
-  console.log(req.files);
   db.upsertUserPhotos(req.params.userEmail, req.files);
   res.json({});
 })
@@ -21,7 +20,6 @@ app.get('/images/:userEmail/:index', async (req, res) => {
   if (!result) {
     res.json({});
   } else {
-    console.log(result);
     res.json(result);
   }
 })
