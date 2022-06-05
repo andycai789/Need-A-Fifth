@@ -1,0 +1,46 @@
+
+<div>
+    Display Name: 
+    <input type="text" [(ngModel)]="name" maxlength="35">
+</div><br>
+
+<div>
+    Rank: 
+    <app-choices 
+        [choicesList]="rankList" 
+        [(choices)]="rank"
+        [initialChoice]="rank"
+    ></app-choices>
+</div><br>
+
+<div>
+    Gender Identity:
+    <app-choices 
+        [choicesList]="genderList" 
+        [(choices)]="gender"
+        [initialChoice]="gender"
+    ></app-choices>
+</div><br>
+
+<div>
+    Your Group Preference:
+    <app-choices 
+        [choicesList]="groupList" 
+        [(choices)]="group"
+        [initialChoice]="group"
+    ></app-choices>
+</div><br>
+
+<div>
+    Your Preferred Roles:
+    <app-choices
+        [isMultiple]=true
+        [choicesList]="roleList"
+        [(choices)]="role"
+        [initialChoice]="role"
+    ></app-choices>
+</div><br>
+
+<button (click)="uploadSettings()">
+    Save User Settings
+</button>

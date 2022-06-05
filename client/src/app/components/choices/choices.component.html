@@ -1,0 +1,12 @@
+<mat-chip-list #chipList selectable multiple={{isMultiple}} >
+    <mat-chip 
+        #chip="matChip"
+        *ngFor="let choice of choicesList" 
+        [value]="choice"
+        (click)="toggleSelection(chip, chipList)"
+        [selected]="isSelected(chip.value)"
+    >
+    {{choice}}</mat-chip>
+</mat-chip-list>
+
+    

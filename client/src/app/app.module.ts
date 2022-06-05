@@ -13,6 +13,7 @@ import { ValuesComponent } from './pages/values/values.component';
 import { UserValueComponent } from './components/user-value/user-value.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatButtonToggleModule } from '@angular/material/button-toggle';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { AuthModule } from '@auth0/auth0-angular';
@@ -24,6 +25,10 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { FormsModule } from '@angular/forms';
 import { PhotoComponent } from './components/photo/photo.component';
+import { GroupSettingsComponent } from './components/group-settings/group-settings.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { ChoicesComponent } from './components/choices/choices.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,10 @@ import { PhotoComponent } from './components/photo/photo.component';
     ProfileComponent,
     SettingsComponent,
     DashboardComponent,
-    PhotoComponent
+    PhotoComponent,
+    GroupSettingsComponent,
+    UserSettingsComponent,
+    ChoicesComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +56,8 @@ import { PhotoComponent } from './components/photo/photo.component';
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatButtonToggleModule,
+    MatSelectModule,
+    MatChipsModule,
     AuthModule.forRoot({
       ...env.auth,
     }),

@@ -2,39 +2,31 @@
     <div>
         Settings 
     </div>
-    <div>
-        Display Name: 
-        <input type="text" [(ngModel)]="name" maxlength="35">
-    </div><br>
-    <div>
-        GI:
-        <mat-button-toggle-group (change)="setGender($event)" name="gender" aria-label="Gender">
-            <ng-container *ngFor="let gender of listOfGenders">
-                <mat-button-toggle [checked]="isGender(gender)" [value]="gender">{{gender}}</mat-button-toggle>
-            </ng-container>
-        </mat-button-toggle-group>
-    </div><br>
 
     <div>
-        MP:
-        <mat-button-toggle-group (change)="setPreferences($event)" name="preferences" aria-label="Preferences" multiple>
-            <ng-container *ngFor="let pref of listOfPreferences">
-                <mat-button-toggle [checked]="hasPref(pref)" [value]="pref">{{pref}}</mat-button-toggle>
-            </ng-container>
-        </mat-button-toggle-group>
+        <button (click)="mode = 'personal'">
+            Personal Settings
+        </button>
+    
+        <button (click)="mode = 'group'"> 
+            Group Settings
+        </button>
     </div><br>
 
-    <div>
-        Upload Photos (Optional):
+    <div [hidden]="mode === 'group'">
+        <app-user-settings>
+        </app-user-settings>
     </div>
 
-    <div class="photos-upload-container">
-        <ng-container *ngFor="let _ of [].constructor(6); let i = index">
-            <app-photo [index] = "i" (newImageFile)="addImageFile($event, i)"></app-photo>
-        </ng-container>
-    </div><br>
-<!-- [routerLink]="['/dashboard']" -->
-    <button (click)="saveSettings()" >
-        Save
-    </button>
+    <div [hidden]="mode === 'personal'">
+        <app-group-settings>
+        </app-group-settings>
+    </div>
 </div>
+
+
+<!-- <div class="photos-upload-container">
+    <ng-container *ngFor="let _ of [].constructor(6); let i = index">
+        <app-photo [index] = "i" (newImageFile)="addImageFile($event, i)"></app-photo>
+    </ng-container>
+</div><br> -->
