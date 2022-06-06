@@ -36,8 +36,13 @@ app.get('/settings/group/:userEmail', async (req, res) => {
   }
 });
 
-app.put('/answers', (req, res) => {
-  db.upsertUserAnswers(req.body);
+app.get('/answers/:userEmail', async (req, res) => {
+  let result = await db.getUserAnswers(req.params.userEmail);
+  res.json(result);
+});
+
+app.put('/answers/:userEmail', (req, res) => {
+  db.upsertUserAnswers(req.params.userEmail, req.body.answers);
   res.json(req.body);
 });
 
@@ -45,6 +50,15 @@ app.post('/similarUsers', async (req, res) => {
   const result = await db.getExactSimilarUsers(req.body.email);
   res.json(result);
 });
+
+// app.post('/decision', async (req, res) => {
+
+
+// });
+
+// app.get('/matches', async (req, res) => { 
+
+// }); 
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

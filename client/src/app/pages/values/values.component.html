@@ -7,7 +7,7 @@
 </div>
 
 <div class="user-values" *ngFor="let value of values let i=index" >
-    <app-user-value [statement]="value" [valueIndex]="i" (opinion)="recordOpinion($event)"></app-user-value>
+    <app-user-value [initialAnswer]="answers[i]" [statement]="value" [valueIndex]="i" (opinion)="recordOpinion($event)"></app-user-value>
 </div>
 
 <div class="submit-values-container">

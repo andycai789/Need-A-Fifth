@@ -16,6 +16,15 @@ async function init() {
     } 
 }
 
+async function getUserInfo(email) {
+    try {
+        const result = await userValuesCollection.findOne({email: email});
+        return result;
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 async function upsertUserSettings(email, settings) {
     try {
         const result = await userValuesCollection.updateOne(
@@ -29,20 +38,28 @@ async function upsertUserSettings(email, settings) {
     }
 }
 
-async function getUserInfo(email) {
+async function getUserAnswers(email) {
     try {
-        const result = await userValuesCollection.findOne({email: email});
-        return result;
+        const result = await userValuesCollection.findOne(
+            {email: email},
+            { projection: { _id: 0, answers: 1 } }
+        );
+
+        if (result === null || Object.keys(result).length === 0) {
+            return {answers: []};
+        } else {
+            return result;
+        }
     } catch (e) {
         console.error(e);
     }
 }
 
-async function upsertUserAnswers(userInfo) {
+async function upsertUserAnswers(email, newAnswers) {
     try {
         const result = await userValuesCollection.updateOne(
-            {email: userInfo.email},
-            {$set: {answers: userInfo.answers}}, 
+            {email: email},
+            {$set: {answers: newAnswers}}, 
             {upsert: true}
         );
         console.log(`upsertUserAnswers: ${result.matchedCount} document(s) matched the query criteria`);
@@ -101,7 +118,7 @@ exports.upsertUserAnswers = upsertUserAnswers;
 exports.getExactSimilarUsers = getExactSimilarUsers;
 exports.upsertUserSettings = upsertUserSettings;
 exports.getUserInfo = getUserInfo;
-
+exports.getUserAnswers = getUserAnswers;
 
 // async function insertBots() {
 //     for (let i = 0; i < 10000; i++) {

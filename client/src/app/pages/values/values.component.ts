@@ -15,16 +15,6 @@ export class ValuesComponent implements OnInit {
     "Value 3",
     "Value 4",
     "Value 5",
-    "Value 6",
-    "Value 7",
-    "Value 8",
-    "Value 9",
-    "Value 10",
-    "Value 11",
-    "Value 12",
-    "Value 13",
-    "Value 14",
-    "Value 15",
   ];
 
   answers: number[] = Array(this.values.length).fill(-1);
@@ -38,6 +28,21 @@ export class ValuesComponent implements OnInit {
   ngOnInit(): void { 
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
+
+      fetch(`/answers/${this.userEmail}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.answers.length > 0) {
+            this.answers = data.answers;
+
+            this.answers.forEach( answer => {
+              if (answer !== -1) {
+                this.percentage += (100 / this.answers.length);
+              }
+            });
+          }
+        })
+        .catch(error => console.error(error));
     });
   }
 
@@ -45,23 +50,16 @@ export class ValuesComponent implements OnInit {
     if (this.answers[e.valueIndex] === -1) {
       this.percentage += (100 / this.answers.length);
     }
-
     this.answers[e.valueIndex] = e.opinion;
   }
 
   submitAnswers(): void {
-    this.answers.forEach((answer, index) => {
-      if (answer === -1) {
-        this.answers[index] = 3;
-      }
-    });
-
-    fetch('/answers', {
+    fetch(`/answers/${this.userEmail}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({email: this.userEmail, answers: this.answers}),
+      body: JSON.stringify({answers: this.answers}),
     })
     .catch((error) => {
       console.error('Error:', error);

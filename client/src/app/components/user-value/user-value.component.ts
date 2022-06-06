@@ -7,13 +7,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UserValueComponent implements OnInit {
 
+  @Input() initialAnswer!: number;
   @Input() statement?: string;
   @Input() valueIndex?: number;
   @Output() opinion = new EventEmitter<object>();
 
+  bubbleTypes: string[] = [
+    "large disagree",
+    "medium disagree",
+    "small disagree",
+    "neutral",
+    "small agree",
+    "medium agree",
+    "large agree"
+  ];
+
+
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   emitOpinion(opinionStrength: number): void {
     this.opinion.emit(
