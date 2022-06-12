@@ -1,9 +1,7 @@
 
 
-<h1 *ngIf="auth.user$ | async as user">
-    Welcome back, 
-    {{user.name}}
-</h1>
+Welcome back, 
+{{getUserEmail()}}
 
 
 <a routerLink="settings"> go to settings </a><br>

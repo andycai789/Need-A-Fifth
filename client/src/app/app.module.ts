@@ -29,6 +29,16 @@ import { GroupSettingsComponent } from './components/group-settings/group-settin
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { ChoicesComponent } from './components/choices/choices.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { TeammateComponent } from './components/teammate/teammate.component';
+import { TeamComponent } from './components/team/team.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+	url: env.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
 
 @NgModule({
   declarations: [
@@ -49,6 +59,8 @@ import {MatChipsModule} from '@angular/material/chips';
     GroupSettingsComponent,
     UserSettingsComponent,
     ChoicesComponent,
+    TeammateComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +73,7 @@ import {MatChipsModule} from '@angular/material/chips';
     AuthModule.forRoot({
       ...env.auth,
     }),
+    SocketIoModule.forRoot(config),
     FormsModule
   ],
   providers: [],

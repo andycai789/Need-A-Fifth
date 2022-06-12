@@ -1,7 +1,43 @@
-<div *ngFor="let person of people">
+<!-- <div *ngFor="let person of people">
     <app-profile 
         [firstName]="person.email" 
         [theirAnswers]="person.answers"
         [userAnswers]="userAnswers">
     </app-profile>
+</div> -->
+
+
+<div>
+    <button (click)="findTeam = true">
+        Find a teammate
+    </button>
 </div>
+
+<div>
+    <button (click)="findTeam = false">
+        Find a team
+    </button>
+</div>
+
+
+TEAMMATE
+
+<app-teammate 
+    [teammate] = "{ riotID: 'Johnny', 
+                    tagline: '4444', 
+                    gender: 'Male', 
+                    role: ['Initiator'], 
+                    values: ['Something1', 'Something2'] }"
+>
+</app-teammate>
+
+TEAM
+
+<app-team
+    [team] = "{ riotID: 'CLQL', 
+                tagline: '4444', 
+                groupType: 'All Male', 
+                role: ['Initiator', 'Duelist', 'Sentinel'], 
+                values: ['Something1', 'Something2'] }"
+>
+</app-team>

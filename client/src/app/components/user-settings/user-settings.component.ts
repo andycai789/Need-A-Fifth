@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -8,7 +8,6 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class UserSettingsComponent implements OnInit {
   
-  userEmail!: string;
   name: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
@@ -21,40 +20,44 @@ export class UserSettingsComponent implements OnInit {
   group: string | string[] = '';
   role: string | string[] = [];
 
-  constructor(public auth: AuthService) { }
+  constructor(private userInfo: UserInfoService) { }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      this.userEmail = user!.email!;
+    const data = this.userInfo.getUserSettings();
 
-      fetch(`/settings/personal/${this.userEmail}`)
-        .then(res => res.json())
-        .then(data => {
-          this.name = data.name;
-          this.rank = data.rank;
-          this.gender = data.gender;
-          this.group = data.group;
-          this.role = data.role;
-        })
-        .catch(error => console.error(error));
-    });
+    if (data === undefined) {
+      return;
+    }
+
+    this.name = data.name;
+    this.rank = data.rank;
+    this.gender = data.gender;
+    this.group = data.group;
+    this.role = data.role;
+  }
+
+  getUserSettingsAsObject() {
+    return {
+      name: this.name, 
+      rank: this.rank,
+      gender: this.gender,
+      group: this.group,
+      role: this.role
+    } 
   }
 
   uploadSettings() {
-    fetch(`/settings/${this.userEmail}`, {
+    const settings = this.getUserSettingsAsObject();
+    this.userInfo.setUserSettings(settings);
+
+    fetch(`/settings/${this.userInfo.getUserEmail()}`, {
       method: "PUT",
       headers: { 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(
         {
-          personal: {
-            name: this.name, 
-            rank: this.rank,
-            gender: this.gender,
-            group: this.group,
-            role: this.role
-          }
+          userSettings: settings
         }
       )
     })
@@ -62,5 +65,4 @@ export class UserSettingsComponent implements OnInit {
       console.error('Error in uploadSettings:', error);
     });
   }
-
 }

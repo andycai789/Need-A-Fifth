@@ -1,0 +1,35 @@
+<div class="teammate">
+    <div class="teammate-container">
+        <div>
+            Rank:
+        </div>
+
+        <div >
+            <div>
+                In Game Name: {{teammate.riotID}} Tagline: {{teammate.tagline}}
+            </div>
+        
+            <div>
+                Gender: {{teammate.gender}}
+            </div>
+        
+            <div>
+                Role: {{teammate.role}}
+            </div>
+        </div>
+    
+        <div>
+            <div>
+                Values: {{teammate.values}}
+            </div>
+        </div>
+    
+        <div>
+            <button (click)="sendOnline()"> 
+                Send Request
+            </button>
+        </div>
+    
+    </div>
+</div>
+

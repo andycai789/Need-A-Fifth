@@ -14,14 +14,18 @@
     </div><br>
 
     <div [hidden]="mode === 'group'">
-        <app-user-settings>
+        <app-user-settings #userSettings>
         </app-user-settings>
     </div>
 
     <div [hidden]="mode === 'personal'">
-        <app-group-settings>
+        <app-group-settings #groupSettings>
         </app-group-settings>
     </div>
+
+    <button (click)="userSettings.uploadSettings(); groupSettings.uploadSettings()">
+        Save Settings
+    </button>
 </div>
 
 

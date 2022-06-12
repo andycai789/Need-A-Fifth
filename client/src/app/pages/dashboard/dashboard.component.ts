@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +8,17 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(private userInfo: UserInfoService) { 
+    
+  }
 
   ngOnInit(): void {
+
   }
+
+  getUserEmail(): string {
+    return this.userInfo.userEmail;
+  }
+
+
 }

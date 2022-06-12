@@ -12,12 +12,14 @@ export class SearchComponent implements OnInit {
   userAnswers!: Array<any>;
   people!: Array<any>;
 
+  findTeam: boolean = true;
+
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
       this.userEmail = user!.email!;
-      this.findSimilarUsers();
+      // this.findSimilarUsers();
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-group-settings',
@@ -20,40 +20,44 @@ export class GroupSettingsComponent implements OnInit {
   gender: string | string[] = '';
   role: string | string[] = [];
 
-  constructor(public auth: AuthService) { }
+  constructor(private userInfo: UserInfoService) { }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      this.userEmail = user!.email!;
+    const data = this.userInfo.getGroupSettings();
 
-      fetch(`/settings/group/${this.userEmail}`)
-        .then(res => res.json())
-        .then(data => {
-          this.name = data.name;
-          this.rank = data.rank;
-          this.group = data.group;
-          this.gender = data.gender;
-          this.role = data.role;
-        })
-        .catch(error => console.error(error));
-    });
+    if (data === undefined) {
+      return;
+    }
+
+    this.name = data.name;
+    this.rank = data.rank;
+    this.group = data.group;
+    this.gender = data.gender;
+    this.role = data.role;
+  }
+
+  getGroupSettingsAsObject() {
+    return {
+      name: this.name, 
+      rank: this.rank,
+      group: this.group,
+      gender: this.gender,
+      role: this.role
+    }
   }
 
   uploadSettings() {
-    fetch(`/settings/${this.userEmail}`, {
+    const settings = this.getGroupSettingsAsObject();
+    this.userInfo.setGroupSettings(settings);
+
+    fetch(`/settings/${this.userInfo.getUserEmail()}`, {
       method: "PUT",
       headers: { 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(
         {
-          group: {
-            name: this.name, 
-            rank: this.rank,
-            group: this.group,
-            gender: this.gender,
-            role: this.role
-          }
+          groupSettings: settings
         }
       )
     })
@@ -61,6 +65,4 @@ export class GroupSettingsComponent implements OnInit {
       console.error('Error in uploadSettings:', error);
     });
   }
-
-
 }

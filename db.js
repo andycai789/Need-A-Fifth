@@ -38,23 +38,6 @@ async function upsertUserSettings(email, settings) {
     }
 }
 
-async function getUserAnswers(email) {
-    try {
-        const result = await userValuesCollection.findOne(
-            {email: email},
-            { projection: { _id: 0, answers: 1 } }
-        );
-
-        if (result === null || Object.keys(result).length === 0) {
-            return {answers: []};
-        } else {
-            return result;
-        }
-    } catch (e) {
-        console.error(e);
-    }
-}
-
 async function upsertUserAnswers(email, newAnswers) {
     try {
         const result = await userValuesCollection.updateOne(
@@ -118,7 +101,6 @@ exports.upsertUserAnswers = upsertUserAnswers;
 exports.getExactSimilarUsers = getExactSimilarUsers;
 exports.upsertUserSettings = upsertUserSettings;
 exports.getUserInfo = getUserInfo;
-exports.getUserAnswers = getUserAnswers;
 
 // async function insertBots() {
 //     for (let i = 0; i < 10000; i++) {
@@ -129,76 +111,3 @@ exports.getUserAnswers = getUserAnswers;
 //       await upsertUserAnswers(bot);
 //     }
 // }
-
-// function getPhotoName(email, index) {
-//     return `${email}-photo${index}`;
-// }
-
-// async function downloadPhotoToBuffer(doc) {
-//     return new Promise((resolve, reject) => {
-//         let bucketStream = bucket.openDownloadStream(doc._id);
-//         let bufs = [];
-
-//         bucketStream.on('data', chunk => {
-//             bufs.push(chunk);
-//         });
-
-//         bucketStream.on('end', () => {
-//             resolve({type: doc.metadata.mimetype, buffer: Buffer.concat(bufs)});
-//         });
-
-//         bucketStream.on('error', () => {
-//             reject("Error: GridFS openDownloadStream failed.");
-//         });
-//     });
-// }
-
-// async function getPhotoBuffer(doc) {
-//     return await downloadPhotoToBuffer(doc);;
-// }
-
-// async function getUserPhoto(email, index) {
-//     try {
-//         const fileName = getPhotoName(email, index);
-//         const doc = await bucket.find({"filename": fileName}).toArray();
-
-//         if (doc.length === 0) {
-//             return;
-//         }
-        
-//         return getPhotoBuffer(doc[0]);
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
-
-// async function deleteOldUserPhotos(photos) {
-//     photos.forEach(photo => {
-//         const cursor = bucket.find({filename: photo.originalname});
-//         cursor.forEach(doc => {
-//             bucket.delete(doc._id);
-//         })
-//     })
-// }
-
-// async function insertUserPhotos(email, photos) {
-//     photos.forEach((photo) => {
-//         const stream = Readable.from(photo.buffer);
-
-//         stream.pipe(bucket.openUploadStream(`${photo.originalname}`, {
-//             chunkSizeBytes: 1048576,
-//             metadata: { email: email, mimetype: photo.mimetype }
-//         }));
-//     });
-// }
-
-// async function upsertUserPhotos(email, photos) {
-//     try {
-//         await deleteOldUserPhotos(photos);
-//         await insertUserPhotos(email, photos);
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
-
-

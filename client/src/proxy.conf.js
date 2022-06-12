@@ -4,7 +4,7 @@ const PROXY_CONFIG = [
           "/answers",
           "/similarUsers",
           "/settings",
-          "/images"
+          "/userData"
       ],
       target: "http://localhost:3000",
       secure: false

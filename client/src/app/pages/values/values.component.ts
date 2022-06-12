@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
-import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'app-values',
@@ -21,31 +21,26 @@ export class ValuesComponent implements OnInit {
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';
   percentage: number = 0;
-  userEmail!: string;
 
-  constructor(public auth: AuthService) { }
+  constructor(private userInfo: UserInfoService) { }
 
   ngOnInit(): void { 
-    this.auth.user$.subscribe(user => {
-      this.userEmail = user!.email!;
+    const answers = this.userInfo.getAnswers();
 
-      fetch(`/answers/${this.userEmail}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.answers.length > 0) {
-            this.answers = data.answers;
+    if (answers === undefined) {
+      return;
+    }
 
-            this.answers.forEach( answer => {
-              if (answer !== -1) {
-                this.percentage += (100 / this.answers.length);
-              }
-            });
-          }
-        })
-        .catch(error => console.error(error));
-    });
+    if (answers.length > 0) {
+      this.answers = answers;
+      this.answers.forEach( answer => {
+        if (answer !== -1) {
+          this.percentage += (100 / this.answers.length);
+        }
+      });
+    }
   }
-
+  
   recordOpinion(e: any): void {
     if (this.answers[e.valueIndex] === -1) {
       this.percentage += (100 / this.answers.length);
@@ -54,7 +49,9 @@ export class ValuesComponent implements OnInit {
   }
 
   submitAnswers(): void {
-    fetch(`/answers/${this.userEmail}`, {
+    this.userInfo.setAnswers(this.answers);
+
+    fetch(`/answers/${this.userInfo.getUserEmail()}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

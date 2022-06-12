@@ -22,7 +22,6 @@ export class UserValueComponent implements OnInit {
     "large agree"
   ];
 
-
   constructor() { }
 
   ngOnInit(): void {
