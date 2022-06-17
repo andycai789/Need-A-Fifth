@@ -37,13 +37,40 @@ const server = app.listen(port, () => {
 });
 
 const io = require('socket.io')().listen(server);
+const PlayerPool = require('./playerPool');
+const GroupPool = require('./groupPool');
+
+let groupPool = new GroupPool();
+
+let malePool = new PlayerPool('Male');
+let femalePool = new PlayerPool('Female');
+let otherPool = new PlayerPool('Other');
+
+// malePool.printPool();
+// malePool.addPlayer("asdf1234", {name: "asdf", tagline: "4444", groupPreference: "male", rank: "diamond"});
+// malePool.addPlayer("a", {name: "sdaf", tagline: "4444", groupPreference: "male", rank: "diamond"});
+// malePool.printPool();
+// malePool.printPool();
 
 io.on('connection', socket => {
+  console.log("CONNECTION");
+  console.log(socket.id);
 
-  console.log('new connection'); 
-  
-  socket.on('online', () => console.log("HERE"));
+  socket.on('playerOnline', () => {
+    console.log("Player connection");
+    console.log(socket.id);
+  });
+
+  socket.on('groupOnline', () => {
+    console.log("Group connection");
+    console.log(socket.id);
+  });
 
   socket.on('disconnect', () => console.log('disconnected')); 
 
-})
+});
+
+
+
+
+

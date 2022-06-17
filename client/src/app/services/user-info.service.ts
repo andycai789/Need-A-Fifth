@@ -6,49 +6,48 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class UserInfoService {
 
-  userEmail!: string;
-  userData!: any;
+  email!: string;
+  info!: any;
 
   constructor(private auth: AuthService) { 
     this.auth.user$.subscribe(user => {
-      this.userEmail = user!.email!;
+      this.email = user!.email!;
 
-      fetch(`/userData/${this.userEmail}`)
+      fetch(`/userData/${this.email}`)
         .then(res => res.json())
         .then(data => {
-          this.userData = data;
-          console.log("GOT USER DATA");
-          console.log(this.userData);
+          this.info = data;
+          console.log(this.info);
         })
         .catch(error => console.error(error));
     });
   }
 
   getUserEmail() {
-    return this.userEmail;
+    return this.email;
   }
 
   getUserSettings() {
-    return this.userData.userSettings;
+    return this.info.userSettings;
   }
 
   getGroupSettings() {
-    return this.userData.groupSettings;
+    return this.info.groupSettings;
   }
 
   getAnswers() {
-    return this.userData.answers;
+    return this.info.answers;
   }
 
   setUserSettings(settings: any) {
-    this.userData.userSettings = settings;
+    this.info.userSettings = settings;
   }
 
   setGroupSettings(settings: any) {
-    this.userData.groupSettings = settings;
+    this.info.groupSettings = settings;
   }
 
   setAnswers(answers: any) {
-    this.userData.answers = answers;
+    this.info.answers = answers;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
+import { Socket } from 'ngx-socket-io';  
 
 @Component({
   selector: 'app-search',
@@ -8,36 +9,17 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class SearchComponent implements OnInit {
 
-  userEmail!: string;
-  userAnswers!: Array<any>;
-  people!: Array<any>;
-
   findTeam: boolean = true;
 
-  constructor(public auth: AuthService) { }
+  constructor(private user: UserInfoService, private socket: Socket) {
+  }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(user => {
-      this.userEmail = user!.email!;
-      // this.findSimilarUsers();
-    });
+    // if (this.findTeam) {
+    //   this.socket.emitPlayerOnline();
+    // } else {
+    //   this.socket.emitGroupOnline();
+    // }
   }
 
-  findSimilarUsers(): void  {
-    fetch('/similarUsers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({email: this.userEmail})
-    })
-    .then(res => res.json())
-    .then(data => {
-      this.people = data.peopleAnswers;
-      this.userAnswers = data.userAnswers
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
 }

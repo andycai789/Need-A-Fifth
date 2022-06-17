@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserEmail(): string {
-    return this.userInfo.userEmail;
+    return this.userInfo.email;
   }
 
 

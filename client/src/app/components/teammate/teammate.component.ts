@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SocketService } from 'src/app/services/socket.service';
 
 interface TeammateInfo {
   riotID: string;
@@ -18,16 +17,9 @@ export class TeammateComponent implements OnInit {
 
   @Input() teammate!: TeammateInfo;
 
-  constructor(
-		private socketService: SocketService 
-	) { }
+  constructor() { }
   
   ngOnInit(): void {
   }
-
-  sendOnline(): void {
-    this.socketService.emitOnline();
-  }
-
 
 }

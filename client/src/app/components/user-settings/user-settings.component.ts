@@ -20,10 +20,10 @@ export class UserSettingsComponent implements OnInit {
   group: string | string[] = '';
   role: string | string[] = [];
 
-  constructor(private userInfo: UserInfoService) { }
+  constructor(private user: UserInfoService) { }
 
   ngOnInit(): void {
-    const data = this.userInfo.getUserSettings();
+    const data = this.user.getUserSettings();
 
     if (data === undefined) {
       return;
@@ -48,9 +48,9 @@ export class UserSettingsComponent implements OnInit {
 
   uploadSettings() {
     const settings = this.getUserSettingsAsObject();
-    this.userInfo.setUserSettings(settings);
+    this.user.setUserSettings(settings);
 
-    fetch(`/settings/${this.userInfo.getUserEmail()}`, {
+    fetch(`/settings/${this.user.getUserEmail()}`, {
       method: "PUT",
       headers: { 
         'Content-Type': 'application/json'

@@ -7,7 +7,6 @@ import { UserInfoService } from 'src/app/services/user-info.service';
   styleUrls: ['./group-settings.component.css']
 })
 export class GroupSettingsComponent implements OnInit {
-  userEmail!: string;
   name: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
@@ -20,10 +19,10 @@ export class GroupSettingsComponent implements OnInit {
   gender: string | string[] = '';
   role: string | string[] = [];
 
-  constructor(private userInfo: UserInfoService) { }
+  constructor(private user: UserInfoService) { }
 
   ngOnInit(): void {
-    const data = this.userInfo.getGroupSettings();
+    const data = this.user.getGroupSettings();
 
     if (data === undefined) {
       return;
@@ -48,9 +47,9 @@ export class GroupSettingsComponent implements OnInit {
 
   uploadSettings() {
     const settings = this.getGroupSettingsAsObject();
-    this.userInfo.setGroupSettings(settings);
+    this.user.setGroupSettings(settings);
 
-    fetch(`/settings/${this.userInfo.getUserEmail()}`, {
+    fetch(`/settings/${this.user.getUserEmail()}`, {
       method: "PUT",
       headers: { 
         'Content-Type': 'application/json'
