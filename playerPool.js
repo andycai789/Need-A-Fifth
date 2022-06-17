@@ -1,21 +1,25 @@
 class PlayerPool {
-    constructor(poolType) {
-        this.poolType = poolType;
-        this.pool = new Map();
+    constructor() {
+        this.searchPools = new Map([
+            ["All Male", new Map()],
+            ["All Female", new Map()],
+            ["Mixed", new Map()]
+        ]);
     }
 
-    getPoolType() {
-        return this.poolType;
+    addPlayer(id, info) {
+        this.searchPools.get(info.group).set(id, info);
     }
 
-    addPlayer(socketID,  playerInfo) {
-        this.pool.set(socketID, playerInfo);
+    removePlayer(id, group) {
+        this.searchPools.get(group).delete(id);
     }
 
-    printPool() {
-        console.log(`Pool type: ${this.poolType}`);
-        console.log([...this.pool.entries()]);
-        console.log();
+    printPools() {
+        for (const [key, value] of this.searchPools.entries()) {
+            console.log(key);
+            console.log([...value.entries()]);
+        }     
     }
 
 

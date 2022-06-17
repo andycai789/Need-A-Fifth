@@ -15,11 +15,13 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.findTeam) {
-    //   this.socket.emitPlayerOnline();
-    // } else {
-    //   this.socket.emitGroupOnline();
-    // }
+
+    if (this.findTeam) {
+      this.socket.emit("playerOnline", this.user.info.userSettings);
+    } else {
+      this.socket.emit("groupOnline", this.user.info.groupSettings);
+    }
   }
+
 
 }
