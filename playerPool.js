@@ -2,9 +2,16 @@ class PlayerPool {
     constructor() {
         this.searchPools = new Map([
             ["All Male", new Map()],
-            ["All Female", new Map()],
+            ["All Female", new Map([["sarah", "someinfo"], ["eliz", "someinfosdofa"]])],
             ["Mixed", new Map()]
         ]);
+    }
+
+    printPools() {
+        for (const [key, value] of this.searchPools.entries()) {
+            console.log(key);
+            console.log([...value.entries()]);
+        }     
     }
 
     addPlayer(id, info) {
@@ -15,12 +22,26 @@ class PlayerPool {
         this.searchPools.get(group).delete(id);
     }
 
-    printPools() {
-        for (const [key, value] of this.searchPools.entries()) {
-            console.log(key);
-            console.log([...value.entries()]);
-        }     
+    getNPlayers(group, n) {
+        const pool = this.searchPools.get(group);
+        let players = [];
+        let count = 0;
+
+        for (const [key, value] of pool) {
+            if (count === n) {
+                break 
+            }
+
+            players.push({id: key, info: value});
+            count++;
+        }
+
+
+        console.log(players);
     }
+
+
+
 
 
 }

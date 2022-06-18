@@ -49,20 +49,27 @@ io.on('connection', socket => {
   socket.on('playerOnline', (info) => {
     console.log(`Player ${socket.id} connected`);
     matchmaker.addPlayer(socket.id, info);
-    matchmaker.printPools();
+    matchmaker.printPlayerPools();
   });
 
-  socket.on('groupOnline', () => {
+  socket.on('groupOnline', (info) => {
     console.log(`Group ${socket.id} connected`);
-    console.log(socket.id);
+    matchmaker.addGroup(socket.id, info);
+    matchmaker.printIDPool();
   });
 
   socket.on('disconnect', () => {
     console.log(`${socket.id} disconnected`);
-    matchmaker.removePlayer(socket.id);
-    matchmaker.printPools();
+    matchmaker.removeUser(socket.id);
+    matchmaker.printPlayerPools();
+    matchmaker.printIDPool();
+  });
 
-  }); 
+  socket.on('getPlayers', () => {
+    const players = matchmaker.getNPlayers(socket.id, 10);
+    socket.emit('sendPlayers', players);
+  });
+
 
 });
 

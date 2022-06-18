@@ -8,18 +8,30 @@
 
 
 <div>
-    <button (click)="findTeam = true">
+    <button (click)="isPlayer = true">
+        Find a team
+    </button>
+</div>
+
+<div>
+    <button (click)="isPlayer = false">
         Find a teammate
     </button>
 </div>
 
 <div>
-    <button (click)="findTeam = false">
-        Find a team
+    isPlayer = {{isPlayer}}
+</div>
+
+<div>
+    <button (click)="emitGetPlayers()">
+        Get some players
     </button>
 </div>
 
-TEAMMATE
+
+
+<!-- TEAMMATE
 
 <app-teammate 
     [teammate] = "{ riotID: 'Johnny', 
@@ -39,5 +51,5 @@ TEAM
                 role: ['Initiator', 'Duelist', 'Sentinel'], 
                 values: ['Something1', 'Something2'] }"
 >
-</app-team>
+</app-team> -->
 
