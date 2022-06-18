@@ -70,7 +70,17 @@ io.on('connection', socket => {
     socket.emit('sendPlayers', players);
   });
 
+  socket.on('sendInvitation', (id) => {
+    // emitInvitation with id, and info
+  });
 
+  socket.on('sendAcceptance', (id) => {
+    
+  });
+
+  socket.on('sendRejection', () => {
+
+  });
 });
 
 

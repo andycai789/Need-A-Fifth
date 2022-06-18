@@ -28,7 +28,8 @@ class Matchmaker {
     addGroup(id, info) {
         this.idToPool.set(id, {
             isPlayer: false,
-            ...info
+            ...info,
+            seenPlayers: new Set()
         });
     }
 
@@ -58,8 +59,9 @@ class Matchmaker {
     getNPlayers(id, n) {
         const gender = this.getGenderFromID(id);
         const group = this.getGroupFromID(id);
+        const seenPlayers = this.idToPool.get(id).seenPlayers;
 
-        return this.playerPools.get(gender).getNPlayers(group, n);
+        return this.playerPools.get(gender).getNPlayers(group, seenPlayers, n);
     }
 
     printPlayerPools() {
