@@ -1,5 +1,4 @@
 const PlayerPool = require('./playerPool');
-const GroupPool = require('./groupPool');
 
 class Matchmaker {
 
@@ -9,8 +8,6 @@ class Matchmaker {
             ["Female", new PlayerPool()],
             ["Other", new PlayerPool()]
         ]);
-
-        this.groupPool = new GroupPool();
 
         this.idToPool = new Map();
 
@@ -38,6 +35,10 @@ class Matchmaker {
     }
 
     removeUser(id) {
+        if (!this.idToPool.has(id)) {
+            return;
+        }
+
         if (this.isPlayer(id)) {
             const gender = this.getGenderFromID(id);
             const group = this.getGroupFromID(id);
@@ -54,6 +55,10 @@ class Matchmaker {
 
     getGroupFromID(id) {
         return this.idToPool.get(id).group;
+    }
+
+    getAllInfoFromID(id) {
+        return this.idToPool.get(id);
     }
 
     getNPlayers(id, n) {

@@ -45,7 +45,6 @@ io.on('connection', socket => {
 
   console.log(`${socket.id} CONNECTION`);
 
-
   socket.on('playerOnline', (info) => {
     console.log(`Player ${socket.id} connected`);
     matchmaker.addPlayer(socket.id, info);
@@ -71,15 +70,22 @@ io.on('connection', socket => {
   });
 
   socket.on('sendInvitation', (id) => {
-    // emitInvitation with id, and info
+
+    let info = matchmaker.getAllInfoFromID(socket.id)
+
+    console.log(info)
+
+    io.to(id).emit("receiveInvitation", {id: socket.id, info: info});
+
   });
 
   socket.on('sendAcceptance', (id) => {
-    
+    console.log("ACCEPTANCED");
+
   });
 
   socket.on('sendRejection', () => {
-
+    console.log("REJECTED");
   });
 });
 

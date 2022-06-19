@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 interface TeamInfo {
-  riotID: string;
-  tagline: string;
-  groupType: string;
+  rank: string;
+  group: string;
   role: string[];
   values: string[];
 }
@@ -15,11 +15,24 @@ interface TeamInfo {
 })
 export class TeamComponent implements OnInit {
 
+  @Input() id!: string;
   @Input() team!: TeamInfo;
 
-  constructor() { }
+  constructor(private socket: Socket) { }
 
   ngOnInit(): void {
   }
+
+  acceptInvitation(): void {
+    this.socket.emit("sendAcceptance");
+
+  }
+
+  rejectInvitation(): void {
+    this.socket.emit("sendRejection");
+  }
+
+
+
 
 }

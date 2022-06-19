@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 interface TeammateInfo {
-  riotID: string;
-  tagline: string;
+  rank: string;
   gender: string;
   role: string[];
   values: string[];
@@ -15,11 +15,17 @@ interface TeammateInfo {
 })
 export class TeammateComponent implements OnInit {
 
+  @Input() id!: string;
   @Input() teammate!: TeammateInfo;
 
-  constructor() { }
+  constructor(private socket: Socket) { }
   
   ngOnInit(): void {
+
+  }
+
+  sendInvitation(): void {
+    this.socket.emit('sendInvitation', this.id);
   }
 
 }

@@ -8,7 +8,8 @@ import { UserInfoService } from 'src/app/services/user-info.service';
 })
 export class UserSettingsComponent implements OnInit {
   
-  name: string = '';
+  riotID: string = '';
+  tagline: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
   genderList: string[] = ['Female', 'Male', 'Other'];
@@ -29,7 +30,8 @@ export class UserSettingsComponent implements OnInit {
       return;
     }
 
-    this.name = data.name;
+    this.riotID = data.riotID;
+    this.tagline = data.tagline;
     this.rank = data.rank;
     this.gender = data.gender;
     this.group = data.group;
@@ -38,7 +40,8 @@ export class UserSettingsComponent implements OnInit {
 
   getUserSettingsAsObject() {
     return {
-      name: this.name, 
+      riotID: this.riotID,
+      tagline: this.tagline, 
       rank: this.rank,
       gender: this.gender,
       group: this.group,

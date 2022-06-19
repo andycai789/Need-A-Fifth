@@ -2,7 +2,7 @@ class PlayerPool {
     constructor() {
         this.searchPools = new Map([
             ["All Male", new Map()],
-            ["All Female", new Map([["lizz", "someinfo"],["jess", "someotherinfo"]])],
+            ["All Female", new Map()],
             ["Mixed", new Map()]
         ]);
     }
@@ -37,18 +37,11 @@ class PlayerPool {
             }
 
             players.push({id: key, info: value});
+            seenPlayers.add(key);
             count++;
         }
-
         return players;
     }
-
-
-
-
-
 }
 
 module.exports = PlayerPool;
-
-

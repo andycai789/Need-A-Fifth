@@ -9,45 +9,44 @@ import { Socket } from 'ngx-socket-io';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-  isPlayer: boolean = false;
+  players: any[] = [];
+  groups: any[] = [];
 
-  constructor(private user: UserInfoService, private socket: Socket) {
-  }
+  constructor(private user: UserInfoService, private socket: Socket) { }
 
-  ngOnInit(): void {
-    this.connectToServer();
-    this.emitPlayerOrGroup();
-    this.onSendPlayers();
+  ngOnInit(): void { 
+  
   }
 
   ngOnDestroy(): void {
     this.socket.disconnect();
   }
 
-  connectToServer(): void {
-    if (!this.socket.ioSocket.connected) {
-      this.socket.connect();
-    }
+  connectAsPlayer(): void {
+    this.reconnect();
+    this.socket.emit("playerOnline", {...this.user.info.userSettings, values: this.user.info.answers});
+    this.socket.on('receiveInvitation', (newGroup: any) => {
+      console.log(newGroup);
+      this.groups = this.groups.concat(newGroup)
+    });
   }
 
-  emitPlayerOrGroup(): void {
-    if (this.isPlayer) {
-      this.socket.emit("playerOnline", this.user.info.userSettings);
-    } else {
-      this.socket.emit("groupOnline", this.user.info.groupSettings);
-    }
+  connectAsGroup(): void {
+    this.reconnect();
+    this.socket.emit("groupOnline", {...this.user.info.groupSettings, values: this.user.info.answers});
+    this.socket.on('sendPlayers', (newPlayers: any) => {
+      console.log(newPlayers);
+      this.players = this.players.concat(newPlayers);
+    });
+  }
+
+  reconnect(): void {
+    this.socket.disconnect();
+    this.socket.connect();
   }
 
   emitGetPlayers(): void {
     this.socket.emit("getPlayers");
-  }
-
-  onSendPlayers(): void {
-    this.socket.on('sendPlayers', (players: any) => {
-      console.log("HERE");
-
-      console.log(players);
-    })
   }
 
 }

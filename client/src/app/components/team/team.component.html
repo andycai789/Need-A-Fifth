@@ -1,20 +1,13 @@
 <div class="team">
     <div class="team-container">
         <div>
-            Rank:
+            Rank: {{team.rank}}
         </div>
 
         <div >
-            <div>
-                In Game Name: {{team.riotID}} 
-            </div>
-        
-            <div>
-                Tagline: {{team.tagline}}
-            </div>
 
             <div>
-                Gender: {{team.groupType}}
+                Gender: {{team.group}}
             </div>
         
             <div>
@@ -29,10 +22,10 @@
         </div>
     
         <div>
-            <button>
+            <button (click)="acceptInvitation()">
                 Accept
             </button>
-            <button>
+            <button (click)="rejectInvitation()">
                 Reject
             </button>
         </div>

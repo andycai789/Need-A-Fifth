@@ -8,19 +8,15 @@
 
 
 <div>
-    <button (click)="isPlayer = true">
+    <button (click)="connectAsPlayer()">
         Find a team
     </button>
 </div>
 
 <div>
-    <button (click)="isPlayer = false">
+    <button (click)="connectAsGroup()">
         Find a teammate
     </button>
-</div>
-
-<div>
-    isPlayer = {{isPlayer}}
 </div>
 
 <div>
@@ -29,27 +25,30 @@
     </button>
 </div>
 
+<div *ngFor="let player of players">
+    <app-teammate 
+        [id] = 'player.id'
+        [teammate] = 'player.info'
+    >
+    </app-teammate>
+</div>
+
+<div *ngFor="let group of groups">
+    <app-team
+        [id] = "group.id"
+        [team] = "group.info"
+    >
+    </app-team>
+</div>
+
+
+
 
 
 <!-- TEAMMATE
 
-<app-teammate 
-    [teammate] = "{ riotID: 'Johnny', 
-                    tagline: '4444', 
-                    gender: 'Male', 
-                    role: ['Initiator'], 
-                    values: ['Something1', 'Something2'] }"
->
-</app-teammate>
 
 TEAM
 
-<app-team
-    [team] = "{ riotID: 'CLQL', 
-                tagline: '4444', 
-                groupType: 'All Male', 
-                role: ['Initiator', 'Duelist', 'Sentinel'], 
-                values: ['Something1', 'Something2'] }"
->
-</app-team> -->
+ -->
 

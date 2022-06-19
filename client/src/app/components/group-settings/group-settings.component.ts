@@ -7,7 +7,9 @@ import { UserInfoService } from 'src/app/services/user-info.service';
   styleUrls: ['./group-settings.component.css']
 })
 export class GroupSettingsComponent implements OnInit {
-  name: string = '';
+
+  riotID: string = '';
+  tagline: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
   groupList: string[] = ['All Female', 'All Male', 'Mixed'];
@@ -28,7 +30,8 @@ export class GroupSettingsComponent implements OnInit {
       return;
     }
 
-    this.name = data.name;
+    this.riotID = data.riotID;
+    this.tagline = data.tagline;
     this.rank = data.rank;
     this.group = data.group;
     this.gender = data.gender;
@@ -37,7 +40,8 @@ export class GroupSettingsComponent implements OnInit {
 
   getGroupSettingsAsObject() {
     return {
-      name: this.name, 
+      riotID: this.riotID,
+      tagline: this.tagline, 
       rank: this.rank,
       group: this.group,
       gender: this.gender,

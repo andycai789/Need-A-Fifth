@@ -1,14 +1,10 @@
 <div class="teammate">
     <div class="teammate-container">
         <div>
-            Rank:
+            Rank: {{teammate.rank}}
         </div>
 
         <div >
-            <div>
-                In Game Name: {{teammate.riotID}} Tagline: {{teammate.tagline}}
-            </div>
-        
             <div>
                 Gender: {{teammate.gender}}
             </div>
@@ -20,12 +16,12 @@
     
         <div>
             <div>
-                Values: {{teammate.values}}
+                Values:  {{teammate.values}}
             </div>
         </div>
     
         <div>
-            <button> 
+            <button (click)='sendInvitation()'> 
                 Send Request
             </button>
         </div>
