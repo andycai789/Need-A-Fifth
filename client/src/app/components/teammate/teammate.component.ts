@@ -25,7 +25,7 @@ export class TeammateComponent implements OnInit {
   }
 
   sendInvitation(): void {
-    this.socket.emit('sendInvitation', this.id);
+    this.socket.emit('sendInvitationFromGroup', this.id);
   }
 
 }

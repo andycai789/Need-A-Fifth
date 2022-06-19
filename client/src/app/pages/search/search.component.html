@@ -1,12 +1,3 @@
-<!-- <div *ngFor="let person of people">
-    <app-profile 
-        [firstName]="person.email" 
-        [theirAnswers]="person.answers"
-        [userAnswers]="userAnswers">
-    </app-profile>
-</div> -->
-
-
 <div>
     <button (click)="connectAsPlayer()">
         Find a team
@@ -20,7 +11,7 @@
 </div>
 
 <div>
-    <button (click)="emitGetPlayers()">
+    <button (click)="emitRequestForPlayers()">
         Get some players
     </button>
 </div>

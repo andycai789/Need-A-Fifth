@@ -64,28 +64,33 @@ io.on('connection', socket => {
     matchmaker.printIDPool();
   });
 
-  socket.on('getPlayers', () => {
+  socket.on('requestPlayersFromGroup', () => {
     const players = matchmaker.getNPlayers(socket.id, 10);
-    socket.emit('sendPlayers', players);
+    socket.emit('sendPlayersToGroup', players);
   });
 
-  socket.on('sendInvitation', (id) => {
+  socket.on('sendInvitationFromGroup', (playerID) => {
 
     let info = matchmaker.getAllInfoFromID(socket.id)
 
     console.log(info)
 
-    io.to(id).emit("receiveInvitation", {id: socket.id, info: info});
+    io.to(playerID).emit("sendInvitationToPlayer", {id: socket.id, info: info});
 
   });
 
-  socket.on('sendAcceptance', (id) => {
-    console.log("ACCEPTANCED");
+  socket.on('sendAcceptanceFromPlayer', (groupID) => {
+    let playerInfo = matchmaker.getAllInfoFromID(socket.id);
 
+    console.log("WE HERE");
+    console.log(playerInfo);
+
+    io.to(groupID).emit("sendAcceptanceToGroup", playerInfo.riotID, playerInfo.tagline);
   });
 
-  socket.on('sendRejection', () => {
-    console.log("REJECTED");
+  socket.on('sendRejectionFromPlayer', (groupID) => {
+    io.to(groupID).emit("sendRejectionToGroup", socket.id);
+
   });
 });
 

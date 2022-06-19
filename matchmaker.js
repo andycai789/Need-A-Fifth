@@ -17,8 +17,7 @@ class Matchmaker {
         this.playerPools.get(info.gender).addPlayer(id, info);
         this.idToPool.set(id, {
             isPlayer: true,
-            gender: info.gender, 
-            group: info.group
+            ...info,
         });
     }
 
