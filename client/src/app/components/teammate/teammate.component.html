@@ -1,4 +1,4 @@
-<div class="teammate">
+<div class="teammate" [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}">
     <div class="teammate-container">
         <div>
             Rank: {{teammate.rank}}

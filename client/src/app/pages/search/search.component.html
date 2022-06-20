@@ -17,7 +17,8 @@
 </div>
 
 <div *ngFor="let player of players">
-    <app-teammate 
+    <app-teammate
+        [isAvailable] = "player.available"
         [id] = 'player.id'
         [teammate] = 'player.info'
     >
@@ -26,8 +27,10 @@
 
 <div *ngFor="let group of groups">
     <app-team
+        [isAvailable] = "group.available"
         [id] = "group.id"
         [team] = "group.info"
+        (rejectEvent) = "removeGroup($event)"
     >
     </app-team>
 </div>

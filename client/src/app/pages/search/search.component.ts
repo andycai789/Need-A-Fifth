@@ -11,6 +11,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   players: any[] = [];
   groups: any[] = [];
+  isGreen = true;
 
   constructor(private user: UserInfoService, private socket: Socket) { }
 
@@ -24,33 +25,51 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   connectAsPlayer(): void {
     this.reconnect();
+
     this.socket.emit("playerOnline", {...this.user.info.userSettings, values: this.user.info.answers});
+    
     this.socket.on('sendInvitationToPlayer', (newGroup: any) => {
       console.log(newGroup);
       this.groups = this.groups.concat(newGroup);
+    });
+
+    this.socket.on("sendAcceptanceToPlayer", (groupRiotID: string, groupTagline: string) => {
+      console.log(groupRiotID);
+      console.log(groupTagline);
+      this.disconnect();
+    });
+
+    this.socket.on('groupUnavailable', (groupID: string) => {
+      this.groups.forEach((group, index) => {
+        if (group.id === groupID) {
+          this.groups[index].available = false;
+        }
+      });
     });
   }
 
   connectAsGroup(): void {
     this.reconnect();
+
     this.socket.emit("groupOnline", {...this.user.info.groupSettings, values: this.user.info.answers});
+    
     this.socket.on('sendPlayersToGroup', (newPlayers: any) => {
       console.log(newPlayers);
       this.players = this.players.concat(newPlayers);
     });
+
     this.socket.on('sendAcceptanceToGroup', (playerRiotID: string, playerTagline: string) => {
       console.log(playerRiotID);
       console.log(playerTagline);
-      // problem is when a player or group is accepted by other players/groups
-      // this will lead to a hole in the map and lead to errors
       this.disconnect();
     });
 
-    this.socket.on('sendRejectionToGroup', (playerID: any) => {
-      console.log("REJECTION FROM");
-      console.log(playerID);
-      // find id in data structure
-      // set the thing to gray or something
+    this.socket.on('playerUnavailable', (playerID: string) => {
+      this.players.forEach((player, index) => {
+        if (player.id === playerID) {
+          this.players[index].available = false;
+        }
+      });
     });
   }
 
@@ -69,4 +88,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.socket.emit("requestPlayersFromGroup");
   }
 
+  removeGroup(groupID: string): void {
+    const index = this.groups.find(group => group.id === groupID);
+    this.groups.splice(index, 1);
+  }
 }

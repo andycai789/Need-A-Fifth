@@ -70,28 +70,26 @@ io.on('connection', socket => {
   });
 
   socket.on('sendInvitationFromGroup', (playerID) => {
-
-    let info = matchmaker.getAllInfoFromID(socket.id)
-
-    console.log(info)
-
-    io.to(playerID).emit("sendInvitationToPlayer", {id: socket.id, info: info});
-
+    if (!matchmaker.hasID(playerID)) {
+      socket.emit('playerUnavailable', playerID);
+    } else {
+      let info = matchmaker.getAllInfoFromID(socket.id)
+      io.to(playerID).emit("sendInvitationToPlayer", {available: true, id: socket.id, info: info});
+    }
   });
 
   socket.on('sendAcceptanceFromPlayer', (groupID) => {
-    let playerInfo = matchmaker.getAllInfoFromID(socket.id);
+    if (!matchmaker.hasID(groupID)) {
+      socket.emit('groupUnavailable', groupID);
+    } else {
+      const playerInfo = matchmaker.getAllInfoFromID(socket.id);
+      const groupInfo = matchmaker.getAllInfoFromID(groupID);
 
-    console.log("WE HERE");
-    console.log(playerInfo);
-
-    io.to(groupID).emit("sendAcceptanceToGroup", playerInfo.riotID, playerInfo.tagline);
+      io.to(groupID).emit("sendAcceptanceToGroup", playerInfo.riotID, playerInfo.tagline);
+      socket.emit("sendAcceptanceToPlayer", groupInfo.riotID, groupInfo.tagline);
+    }
   });
 
-  socket.on('sendRejectionFromPlayer', (groupID) => {
-    io.to(groupID).emit("sendRejectionToGroup", socket.id);
-
-  });
 });
 
 

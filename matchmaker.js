@@ -33,6 +33,10 @@ class Matchmaker {
         return this.idToPool.get(id).isPlayer;
     }
 
+    hasID(id) {
+        return this.idToPool.has(id);
+    }
+
     removeUser(id) {
         if (!this.idToPool.has(id)) {
             return;

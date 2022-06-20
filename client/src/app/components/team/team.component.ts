@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
 interface TeamInfo {
@@ -17,8 +17,10 @@ interface TeamInfo {
 })
 export class TeamComponent implements OnInit {
 
+  @Input() isAvailable!: boolean;
   @Input() id!: string;
   @Input() team!: TeamInfo;
+  @Output() rejectEvent = new EventEmitter<string>();
 
   constructor(private socket: Socket) { }
 
@@ -26,18 +28,11 @@ export class TeamComponent implements OnInit {
   }
 
   acceptInvitation(): void {
-    console.log(this.team.riotID);
-    console.log(this.team.tagline);
-
     this.socket.emit("sendAcceptanceFromPlayer", this.id);
-
   }
 
   rejectInvitation(): void {
-    this.socket.emit("sendRejectionFromPlayer", this.id);
+    this.rejectEvent.emit(this.id)
   }
-
-
-
 
 }

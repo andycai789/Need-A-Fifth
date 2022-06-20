@@ -15,6 +15,7 @@ interface TeammateInfo {
 })
 export class TeammateComponent implements OnInit {
 
+  @Input() isAvailable!: boolean;
   @Input() id!: string;
   @Input() teammate!: TeammateInfo;
 

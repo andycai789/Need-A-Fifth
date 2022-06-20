@@ -36,7 +36,7 @@ class PlayerPool {
                 continue;
             }
 
-            players.push({id: key, info: value});
+            players.push({available: true, id: key, info: value});
             seenPlayers.add(key);
             count++;
         }
