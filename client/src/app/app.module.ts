@@ -33,6 +33,7 @@ import {MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
+import { QuestionsComponent } from './pages/questions/questions.component';
 
 const config: SocketIoConfig = {
 	url: env.socketUrl, // socket server url;
@@ -62,7 +63,8 @@ const config: SocketIoConfig = {
     ChoicesComponent,
     TeammateComponent,
     TeamComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,12 @@
-
-
-
 <div>
     Welcome back, 
     {{getUserEmail()}}
 </div>
 
-<a routerLink="settings"> go to settings </a><br>
-<a routerLink="values"> go to values </a><br>
-<a routerLink="search"> go to search </a><br>
+<div *ngIf="userInfo.isLoaded">
+    <a routerLink="settings"> go to settings </a><br>
+    <a routerLink="questions"> go to questions </a><br>
+    <a routerLink="search"> go to search </a><br>
+</div>
+
+

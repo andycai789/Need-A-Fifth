@@ -8,6 +8,7 @@ export class UserInfoService {
 
   email!: string;
   info!: any;
+  isLoaded: boolean = false;
 
   constructor(private auth: AuthService) { 
     this.auth.user$.subscribe(user => {
@@ -17,6 +18,7 @@ export class UserInfoService {
         .then(res => res.json())
         .then(data => {
           this.info = data;
+          this.isLoaded = true;
           console.log(this.info);
         })
         .catch(error => console.error(error));

@@ -8,7 +8,7 @@ import { UserInfoService } from 'src/app/services/user-info.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private userInfo: UserInfoService) { 
+  constructor(public userInfo: UserInfoService) { 
     
   }
 
