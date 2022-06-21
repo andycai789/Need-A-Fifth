@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import { UserInfoService } from 'src/app/services/user-info.service';
 import { Socket } from 'ngx-socket-io';  
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +16,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   groups: any[] = [];
   isGreen = true;
 
-  constructor(private user: UserInfoService, private socket: Socket) { }
+  constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) { }
 
   ngOnInit(): void { 
   
@@ -34,8 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on("sendAcceptanceToPlayer", (groupRiotID: string, groupTagline: string) => {
-      console.log(groupRiotID);
-      console.log(groupTagline);
+      this.openDialog(groupRiotID, groupTagline);
       this.disconnect();
     });
 
@@ -59,8 +61,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('sendAcceptanceToGroup', (playerRiotID: string, playerTagline: string) => {
-      console.log(playerRiotID);
-      console.log(playerTagline);
+      this.openDialog(playerRiotID, playerTagline);
       this.disconnect();
     });
 
@@ -91,5 +92,35 @@ export class SearchComponent implements OnInit, OnDestroy {
   removeGroup(groupID: string): void {
     const index = this.groups.find(group => group.id === groupID);
     this.groups.splice(index, 1);
+  }
+
+
+  openDialog(riotID: string, tagline: string): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {riotID, tagline},
+    });
+  }
+}
+
+export interface DialogData {
+  riotID: string;
+  tagline: string;
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private router: Router
+  ) {}
+
+  returnToDashboard(): void {
+    this.dialogRef.close();
+    this.router.navigate(['/dashboard']);
   }
 }
