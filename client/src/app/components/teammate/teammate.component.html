@@ -21,7 +21,7 @@
         </div>
     
         <div>
-            <button (click)='sendInvitation()'> 
+            <button (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
                 Send Request
             </button>
         </div>

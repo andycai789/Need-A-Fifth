@@ -93,11 +93,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.groups.splice(index, 1);
   }
 
-
   openDialog(riotID: string, tagline: string): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
       data: {riotID, tagline},
+      disableClose: true
     });
   }
 }

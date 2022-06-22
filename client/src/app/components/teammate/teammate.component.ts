@@ -19,6 +19,8 @@ export class TeammateComponent implements OnInit {
   @Input() id!: string;
   @Input() teammate!: TeammateInfo;
 
+  clicked = false;
+
   constructor(private socket: Socket) { }
   
   ngOnInit(): void {

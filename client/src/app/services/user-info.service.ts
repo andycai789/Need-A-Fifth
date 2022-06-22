@@ -20,6 +20,7 @@ export class UserInfoService {
           this.info = data;
           this.isLoaded = true;
           console.log(this.info);
+          
         })
         .catch(error => console.error(error));
     });
