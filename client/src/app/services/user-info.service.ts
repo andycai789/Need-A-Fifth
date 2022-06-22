@@ -18,9 +18,7 @@ export class UserInfoService {
         .then(res => res.json())
         .then(data => {
           this.info = data;
-          this.isLoaded = true;
-          console.log(this.info);
-          
+          this.isLoaded = true;          
         })
         .catch(error => console.error(error));
     });

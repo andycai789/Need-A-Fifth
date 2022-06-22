@@ -11,7 +11,30 @@ app.get('/userData/:userEmail', async (req, res) => {
   let result = await db.getUserInfo(req.params.userEmail);
 
   if (result === null) {
-    res.json({});
+    const userSettings = {
+      riotID: "YourRiotID",
+      tagline: "00000",
+      rank: "Iron",
+      gender: "Female",
+      group: "All Female",
+      role: ["Controller"]
+    }
+
+    const groupSettings = {
+      riotID: "YourRiotID",
+      tagline: "00000",
+      rank: "Iron",
+      group: "All Female",
+      gender: "Female",
+      role: ["Controller"]
+    }
+
+    db.upsertUserSettings(req.params.userEmail, {userSettings});
+    db.upsertUserSettings(req.params.userEmail, {groupSettings});
+    db.upsertUserAnswers(req.params.userEmail, []);
+
+    let defaultSettings = await db.getUserInfo(req.params.userEmail);
+    res.json(defaultSettings);
   } else {
     res.json(result);
   }
