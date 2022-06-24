@@ -1,0 +1,111 @@
+
+.firstSection {
+    height: 600px;
+    background-color: #1A2537;
+    color: white;
+}
+
+.sectionContainer {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.sectionContentRight {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 0 20px;
+    padding: 0 24px;
+}
+
+.sectionContentRight img {
+    grid-column: span 7;
+}
+
+.sectionContentRight .description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    grid-column: 9/span 4;
+}
+
+.sectionContentLeft {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 0 20px;
+    padding: 0 24px;
+}
+
+.sectionContentLeft img {
+    grid-column: 6 / span 7;
+}
+
+.sectionContentLeft .description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    grid-column: 1 / span 4;
+}
+
+.h2Description {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.textDescription {
+    line-height: 1.625;
+    font-size: clamp(16px,2vw,20px);
+}
+
+.greyWhiteBackground {
+    background-color: #dbd7ca;
+}
+
+.redBackground {
+    background-color: #E75957; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.thirdSection {
+    height: 600px;
+    background-color: #dbd9d3;
+}
+
+.fourthSection {
+    height: 600px;
+}
+
+.fifthSection {
+    height: 400px;
+    background-color: rgb(39, 37, 37);
+    color: white;
+}
+
+.redBackground {
+    background-color: #E75957;
+}
+
+

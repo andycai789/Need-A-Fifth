@@ -1,15 +1,15 @@
 .logout-button {
-    background-color: black;
-    color: white;
+    background-color: #E75957;
+    color: black;
     margin-right: 20px;
     border-radius: 5px;
     font-weight: bold;
     padding: 10px;
+    letter-spacing: 2px;
 }
 
 .logout-button:hover {
-    background-color: grey;
-    border: 2px solid gray;
+    background-color: rgb(66, 65, 65);
 }
 
 .logout-button:focus {

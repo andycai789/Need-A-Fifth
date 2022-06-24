@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <a id="logo" routerLink=""> ProjectName </a>
+    <a id="logo" routerLink=""> NAME </a>
     <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
     <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
 </nav>
