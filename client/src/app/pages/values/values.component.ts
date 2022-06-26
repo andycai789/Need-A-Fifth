@@ -2,11 +2,55 @@ import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { UserInfoService } from 'src/app/services/user-info.service';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  query,
+  stagger,
+  sequence,
+  group,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-values',
   templateUrl: './values.component.html',
-  styleUrls: ['./values.component.css']
+  styleUrls: ['./values.component.css'],
+  animations: [
+    trigger('flowUp', [
+      transition(':enter', [
+
+       query('.statement', [
+          style({opacity: 0, transform: 'translateY(-200px)' })
+        ]),
+        query('.bubble', [
+          style({opacity: 0, transform: 'translate(-200px, -200px)' })
+        ]),
+        query('.divider', [
+          style({opacity: 0, width: '0px' })
+        ]),
+ 
+        
+        sequence([ 
+          query('.statement', stagger(150, [
+            animate('500ms cubic-bezier(0.35, 0, 0.25, 1)',
+            style({ opacity: 1, transform: 'none' }))
+          ])),
+          group([
+            query('.bubble', stagger(50, [
+              animate('500ms cubic-bezier(0.35, 0, 0.25, 1)',
+              style({ opacity: 1, transform: 'none' }))
+            ])),
+            query('.divider', stagger(500, [
+              animate('2000ms cubic-bezier(0.35, 0, 0.25, 1)',
+              style({ opacity: 1, width: "90%" }))
+            ]))
+          ])
+        ])
+      ])
+    ])
+  ]
 })
 export class ValuesComponent implements OnInit {
   values: string[] = [

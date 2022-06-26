@@ -7,6 +7,7 @@
     background-color: black;
     padding: 10px;
     letter-spacing: 2px;
+    z-index: 10;
 }
 
 
@@ -24,4 +25,18 @@
 
 #logo:hover { 
     color: grey;
+}
+
+.navButton {
+    color: white;
+    display: inline-flex; 
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    letter-spacing: 2px;
+}
+
+.navButton:hover {
+    background-color: rgb(66, 65, 65);
 }

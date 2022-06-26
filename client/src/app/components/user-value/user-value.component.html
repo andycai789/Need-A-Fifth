@@ -1,13 +1,15 @@
+
 <div class="statement"> {{statement}}</div>
 
 <div class="opinion">
-    <span class="disagree-text">Disagree</span>
+    <span class="disagree-text bubble">Disagree</span>
 
-    <div *ngFor="let type of bubbleTypes; let i = index ">
+    <div class="bubble" *ngFor="let type of bubbleTypes; let i = index ">
         <input [checked]="initialAnswer === i" class="{{type}}" type="radio" name={{valueIndex}} (click)="emitOpinion(i)">
     </div>
 
-    <span class="agree-text">Agree&nbsp;&nbsp;&nbsp;</span>
+    <span class="agree-text bubble">Agree&nbsp;&nbsp;&nbsp;</span>
 </div>
 
 <div class="divider"></div>
+

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-user-value',
   templateUrl: './user-value.component.html',
-  styleUrls: ['./user-value.component.css']
+  styleUrls: ['./user-value.component.css'],
 })
 export class UserValueComponent implements OnInit {
 
@@ -35,6 +35,4 @@ export class UserValueComponent implements OnInit {
       }  
     )
   }
-
-
 }

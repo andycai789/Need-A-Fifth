@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   routeToDashboard() {
-    this.route.navigate(['/dashboard']);
+    this.route.navigate(['/search']);
   }
 
 }

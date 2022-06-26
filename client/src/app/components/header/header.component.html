@@ -1,5 +1,33 @@
 <nav class="navbar">
-    <a id="logo" routerLink=""> NAME </a>
-    <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
-    <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
+    <a id="logo" routerLink=""> asdfsadf </a>
+
+    <div>
+        <span 
+            class="navButton" 
+            *ngIf="(auth.isAuthenticated$ | async)" 
+            (click)="routeToPath('/settings')"
+            [ngStyle] = "this.route.url === '/settings' ? {'background-color': 'rgb(66, 65, 65)'} : {}"
+        > 
+            Settings 
+        </span>
+        <span 
+            class="navButton" 
+            *ngIf="(auth.isAuthenticated$ | async)" 
+            (click)="routeToPath('/questions')"
+            [ngStyle] = "this.route.url === '/questions' ? {'background-color': 'rgb(66, 65, 65)'} : {}"
+        > 
+            Values 
+        </span>
+        <span 
+            class="navButton" 
+            *ngIf="(auth.isAuthenticated$ | async)" 
+            (click)="routeToPath('/search')"
+            [ngStyle] = "this.route.url === '/search' ? {'background-color': 'rgb(66, 65, 65)'} : {}"
+        > 
+            Search 
+        </span>
+        <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
+        <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
+    </div>
 </nav>
+

@@ -119,7 +119,9 @@ export class DialogOverviewExampleDialog {
   ) {}
 
   returnToDashboard(): void {
+
+    // dont know about this search path yet.
     this.dialogRef.close();
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/search']);
   }
 }

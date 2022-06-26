@@ -8,7 +8,6 @@ import { QuestionsComponent } from './pages/questions/questions.component';
 import { SearchComponent } from './pages/search/search.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   { 
@@ -16,22 +15,17 @@ const routes: Routes = [
     component: LoginComponent
   },
   { 
-    path: 'dashboard', 
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  { 
-    path: 'dashboard/settings', 
+    path: 'settings', 
     component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   { 
-    path: 'dashboard/questions', 
+    path: 'questions', 
     component: QuestionsComponent,
     canActivate: [AuthGuard]
   },
   { 
-    path: 'dashboard/search', 
+    path: 'search', 
     component: SearchComponent,
     canActivate: [AuthGuard]
   },
