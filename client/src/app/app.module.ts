@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { SearchComponent, DialogOverviewExampleDialog } from './pages/search/sea
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ValuesComponent } from './pages/values/values.component';
 import { UserValueComponent } from './components/user-value/user-value.component';
 import { AuthModule } from '@auth0/auth0-angular';
@@ -36,7 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { QuestionsComponent } from './pages/questions/questions.component';
 
 const config: SocketIoConfig = {
-	url: env.socketUrl, // socket server url;
+	url: env.socketUrl,
 	options: {
 		transports: ['websocket']
 	}
@@ -64,7 +64,7 @@ const config: SocketIoConfig = {
     TeammateComponent,
     TeamComponent,
     DialogOverviewExampleDialog,
-    QuestionsComponent
+    QuestionsComponent,
   ],
   imports: [
     BrowserModule,

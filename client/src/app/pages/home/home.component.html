@@ -1,60 +1,61 @@
-<div class="firstSection">
-    Fasd
-</div>
 
-<div class="sectionContainer">
-    <div class="sectionContentRight">
-        <img src="./../../../assets/img/test.jpg" alt="Image of lobby screen.">
-    
-        <div class="description">
-            <h2 class="h2Description">
-                Create an invite-only place where you belong
-            </h2>
-        
-            <div class="textDescription">
-                Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.
+<div class="container">
+    <div class="box-slide">
+        <div class="reveal-content">
+            <div class="button_slide slide_right" (click)="routeToDashboard()">
+                FIND YOUR FIFTH
+            </div>
+        </div>
+        <div class="reveal-top">
+            <div class="reveal-content caption">
+                <h1>NEED A FIFTH?</h1>
             </div>
         </div>
     </div>
 </div>
 
-<div class="sectionContainer greyWhiteBackground">
-    <div class="sectionContentLeft">    
+<div class="sectionContainer">
+    <div @flowUp class="sectionContentRight">
+        <img src="./../../../assets/img/test.jpg" alt="Image of lobby screen.">
+    
         <div class="description">
             <h2 class="h2Description">
-                Create an invite-only place where you belong
+                DON'T HAVE A FIFTH PLAYER FOR RANKED?
             </h2>
-        
-            <div class="textDescription">
-                Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.
-            </div>
+        </div>
+    </div>
+</div>
+
+<div #thirdSection class="sectionContainer greyWhiteBackground" id="somethingelse">
+    <div [@flowUp] = "thirdSectionState" class="sectionContentLeft">    
+        <div class="description">
+            <h2 class="h2Description">
+                OR TIRED OF CLIMBING RANKED ALONE?
+            </h2>
         </div>
 
         <img src="./../../../assets/img/test.jpg" alt="Image of lobby screen.">
     </div>
 </div>
 
-<div class="sectionContainer">
-    <div class="sectionContentRight">
+<div #fourthSection class="sectionContainer">
+    <div [@flowUp] = "fourthSectionState" class="sectionContentRight">
         <img src="./../../../assets/img/test.jpg" alt="Image of lobby screen.">
     
         <div class="description">
             <h2 class="h2Description">
-                Create an invite-only place where you belong
+                FIND A FIFTH OR A GROUP BASED ON YOUR PREFERENCE
             </h2>
-        
-            <div class="textDescription">
-                Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.
-            </div>
         </div>
     </div>
 </div>
 
 
 <div class="redBackground">
-
-    <a routerLink="dashboard"> go to dashboard </a><br>
-
-
+    <div class="reveal-content">
+        <div class="button_slide slide_right" (click)="routeToDashboard()">
+            READY TO START YOUR SEARCH?
+        </div>
+    </div>
 </div>
 
