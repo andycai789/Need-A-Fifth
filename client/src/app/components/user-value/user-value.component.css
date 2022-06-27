@@ -75,14 +75,17 @@
 
 .opinion input:hover {
     background-color: gray;
+    cursor: pointer;
 }
 
 .opinion input.agree:hover {
     background-color: var(--green-color);
+    cursor: pointer;
 }
 
 .opinion input.disagree:hover {
     background-color: var(--red-color);
+    cursor: pointer;
 }
 
 .divider {

@@ -5,8 +5,8 @@
         <span 
             class="navButton" 
             *ngIf="(auth.isAuthenticated$ | async)" 
-            (click)="routeToPath('/settings')"
-            [ngStyle] = "this.route.url === '/settings' ? {'background-color': 'rgb(66, 65, 65)'} : {}"
+            (click)="routeToPath('/userSettings')"
+            [ngStyle] = "this.route.url === '/userSettings' ? {'background-color': 'rgb(66, 65, 65)'} : {}"
         > 
             Settings 
         </span>

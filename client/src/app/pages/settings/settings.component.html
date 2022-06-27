@@ -1,4 +1,4 @@
-<div class="settings" *ngIf="userInfo.isLoaded">
+<div @fadeIn class="settings" *ngIf="userInfo.isLoaded">
     <div>
         Settings 
     </div>
@@ -23,7 +23,7 @@
         </app-group-settings>
     </div>
 
-    <button (click)="userSettings.uploadSettings(); groupSettings.uploadSettings()">
+    <button (click)="userSettings.uploadSettings(); groupSettings.uploadSettings(); navigateToSearch()">
         Save Settings
     </button>
 </div>

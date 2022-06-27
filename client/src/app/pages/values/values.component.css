@@ -7,18 +7,29 @@
     margin-top: 40px;
 }
 
-.submit-values-container {
+.searchButtonContainer{
     display: flex;
     justify-content: center;
+    margin-top: 75px;
+    margin-bottom: 75px;
 }
 
-.submit-values {
-    margin: 20px 0px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    padding: 15px 20px;
-    width: 100px;
-    background-color: black;
-    border-radius: 30px;
+.searchButton {
+    color: black;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 0px;
+    padding: 18px 36px;
+    display: inline-block;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 24px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #E75957 ;
+    -webkit-transition: ease-out 0.75s;
+    -moz-transition: ease-out 0.75s;
+    transition: ease-out 0.75s;
+}
+
+.slideRight:hover {
+    box-shadow: inset 500px 0 0 0 #E75957  ;
 }

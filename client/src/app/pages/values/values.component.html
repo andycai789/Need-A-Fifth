@@ -6,7 +6,7 @@
     </mat-progress-bar>
 </div>
 
-<div [@flowUp]="values.length">
+<div @flowUp>
     <div class="user-values" *ngFor="let value of values let i=index" >
         <app-user-value
             [initialAnswer]="answers[i]" 
@@ -17,8 +17,8 @@
     </div>
 </div>
 
-<div class="submit-values-container">
-    <a class="submit-values" routerLink="../search" (click)="submitAnswers()"> Search </a>
+<div @fadeIn class="searchButtonContainer">
+    <span class="searchButton slideRight" (click)="submitAnswers()">
+        SAVE VALUES
+    </span>
 </div>
-
-
