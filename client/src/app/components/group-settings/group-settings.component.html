@@ -1,5 +1,5 @@
 <div>
-    Riot ID:
+    Valorant Name:
     <input type="text" [(ngModel)]="riotID" maxlength="35">
 </div><br>
 
@@ -15,6 +15,7 @@
         [choicesList]="rankList" 
         [(choices)]="rank"
         [initialChoice]="rank"
+        [isPrimary]="false"
     ></app-choices>
 </div><br>
 
@@ -24,6 +25,7 @@
         [choicesList]="groupList" 
         [(choices)]="group"
         [initialChoice]="group"
+        [isPrimary]="false"
     ></app-choices>
 </div><br>
 
@@ -33,6 +35,7 @@
         [choicesList]="genderList" 
         [(choices)]="gender"
         [initialChoice]="gender"
+        [isPrimary]="false"
     ></app-choices>
 </div><br>
 
@@ -43,5 +46,6 @@
         [choicesList]="roleList"
         [(choices)]="role"
         [initialChoice]="role"
+        [isPrimary]="false"
     ></app-choices>
 </div><br>

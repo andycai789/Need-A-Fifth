@@ -1,10 +1,11 @@
 <mat-chip-list #chipList selectable multiple={{isMultiple}} >
-    <mat-chip 
+    <mat-chip
         #chip="matChip"
         *ngFor="let choice of choicesList" 
         [value]="choice"
         (click)="toggleSelection(chip, chipList)"
         [selected]="isSelected(chip.value)"
+        [color] = "isPrimary ? 'primary' : 'accent'"
     >
     {{choice}}</mat-chip>
 </mat-chip-list>

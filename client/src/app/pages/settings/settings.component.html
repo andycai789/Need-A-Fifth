@@ -1,16 +1,22 @@
 <div @fadeIn class="settings" *ngIf="userInfo.isLoaded">
-    <div>
+    <div class="title">
         Settings 
     </div>
 
-    <div>
-        <button (click)="mode = 'personal'">
+    <div class="settingMode">
+        <span 
+            class="modeButton" 
+            (click)="mode = 'personal'" 
+            [ngStyle]="mode === 'personal' ? {'background-color': '#DF523D'} : {'background-color': 'grey'}">
             Personal Settings
-        </button>
+        </span>
     
-        <button (click)="mode = 'group'"> 
+        <span 
+            class="modeButton" 
+            (click)="mode = 'group'" 
+            [ngStyle]="mode === 'group' ? {'background-color': '#C62828'} : {'background-color': 'grey'}"> 
             Group Settings
-        </button>
+        </span>
     </div><br>
 
     <div [hidden]="mode === 'group'">
@@ -23,14 +29,11 @@
         </app-group-settings>
     </div>
 
-    <button (click)="userSettings.uploadSettings(); groupSettings.uploadSettings(); navigateToSearch()">
-        Save Settings
-    </button>
+    <div class="saveButtonContainer">
+        <span class="saveButton" (click)="userSettings.uploadSettings(); groupSettings.uploadSettings(); navigateToSearch()">
+            Save Settings
+        </span>
+    </div>
 </div>
 
 
-<!-- <div class="photos-upload-container">
-    <ng-container *ngFor="let _ of [].constructor(6); let i = index">
-        <app-photo [index] = "i" (newImageFile)="addImageFile($event, i)"></app-photo>
-    </ng-container>
-</div><br> -->

@@ -5,9 +5,7 @@ import {
   style,
   animate,
   transition,
-  query,
-  stagger,
-  group,
+  state,
 } from '@angular/animations';
 import { Router } from '@angular/router';
 

@@ -5,12 +5,45 @@
     border-radius: 10px;
     border: 1px solid black;
     max-width: 600px;
-
+    font-weight: bold;
 }
 
-/* .photos-upload-container {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-} */
+.title {
+    font-size: 32px;
+    padding-bottom: 20px;
+}
+
+.settingMode {
+    margin-bottom: 10px;
+}
+
+.modeButton {
+    padding: 10px;
+    background-color: grey;
+    font-weight: initial;
+    color: white;
+    margin: 10px 10px 10px 0px;
+    border-radius: 5px;
+}
+
+.modeButton:hover {
+    cursor: pointer;
+}
+
+.saveButtonContainer {
+    margin-top: 10px;
+}
+
+.saveButton {
+    padding: 10px;
+    background-color: black;
+    font-weight: initial;
+    color: white;
+    border-radius: 5px;
+}
+
+.saveButton:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+

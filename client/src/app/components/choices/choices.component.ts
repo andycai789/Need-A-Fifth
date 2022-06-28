@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatChip, MatChipListChange } from '@angular/material/chips';
+import { MatChip } from '@angular/material/chips';
 
 @Component({
   selector: 'app-choices',
@@ -14,6 +14,7 @@ export class ChoicesComponent implements OnInit {
   @Input() initialChoice!: string | string[];
   @Input() choicesList!: string[];
   @Input() isMultiple: boolean = false;
+  @Input() isPrimary: boolean = true;
 
   constructor() { }
 
