@@ -3,11 +3,59 @@ import { UserInfoService } from 'src/app/services/user-info.service';
 import { Socket } from 'ngx-socket-io';  
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  query,
+  sequence,
+  group
+} from '@angular/animations';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  animations: [
+    trigger("slideFromTopAndBottom", [
+      transition(':enter', [
+        query('.left', style({opacity: 0, transform: 'translateY(-800px)' })),
+        query('.right', style({opacity: 0, transform: 'translateY(800px)' })),
+        query('h2', style({opacity: 0, transform: 'scale(0)' })),
+
+        sequence([
+          group([
+            query('.right', 
+              animate('600ms cubic-bezier(0.35, 0, 0.25, 1)', 
+                style({ opacity: 1, transform: 'none' }))),
+
+            query('.left', 
+              animate('600ms cubic-bezier(0.35, 0, 0.25, 1)', 
+                style({ opacity: 1, transform: 'none' }))),
+          ]),
+          query('h2', 
+            animate('300ms cubic-bezier(0.35, 0, 0.25, 1)', 
+              style({ opacity: 1, transform: 'scale(1)' }))),
+        ])
+      ]),
+
+      transition(':leave', [
+        query('.left', style({opacity: 1})),
+        query('.right', style({opacity: 1})),
+
+        group([
+          query('.right', 
+            animate('600ms cubic-bezier(0.35, 0, 0.25, 1)', 
+              style({ opacity: 0, transform: 'translateX(800px)' }))),
+
+          query('.left', 
+            animate('600ms cubic-bezier(0.35, 0, 0.25, 1)', 
+              style({ opacity: 0, transform: 'translateX(-800px)' }))),
+        ])
+      ])
+    ])
+  ]
 })
 export class SearchComponent implements OnInit, OnDestroy {
 

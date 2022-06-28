@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
     trigger('flowUp', [
       transition(':enter', [
 
-       query('.statement', [
+        query('.statement', [
           style({opacity: 0, transform: 'translateY(-300px)' })
         ]),
         query('.bubble', [
@@ -34,16 +34,16 @@ import { Router } from '@angular/router';
         group([
           query('.statement', stagger(500, [
             animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 1, transform: 'none' }))
+              style({ opacity: 1, transform: 'none' }))
           ])),
           query('.bubble', stagger(60, [
             animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 1, transform: 'none' }))
+              style({ opacity: 1, transform: 'none' }))
           ])),
         ]),
         query('.divider', stagger(200, [
           animate('1000ms cubic-bezier(0.35, 0, 0.25, 1)',
-          style({ opacity: 1, width: "90%", transform: 'none' }))
+            style({ opacity: 1, width: "90%", transform: 'none' }))
         ])) 
       ])
     ]),
