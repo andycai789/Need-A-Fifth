@@ -8,8 +8,8 @@ import { SearchComponent } from './pages/search/search.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
-import { FindTeammateComponent } from './pages/find-teammate/find-teammate.component';
-import { FindTeamComponent } from './pages/find-team/find-team.component';
+import { TeamsComponent } from './pages/teams/teams.component';
+import { TeammatesComponent } from './pages/teammates/teammates.component';
 
 const routes: Routes = [
   { 
@@ -36,12 +36,12 @@ const routes: Routes = [
   },
   { 
     path: 'search/teams', 
-    component: FindTeamComponent,
+    component: TeamsComponent,
     canActivate: [AuthGuard],
   },
   { 
     path: 'search/teammates', 
-    component: FindTeammateComponent,
+    component: TeammatesComponent,
     canActivate: [AuthGuard],
   },
   { 

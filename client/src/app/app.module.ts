@@ -35,6 +35,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FindTeamComponent } from './pages/find-team/find-team.component';
 import { FindTeammateComponent } from './pages/find-teammate/find-teammate.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
+import { TeamsComponent } from './pages/teams/teams.component';
+import { TeammatesComponent } from './pages/teammates/teammates.component';
 
 const config: SocketIoConfig = {
 	url: env.socketUrl,
@@ -66,6 +68,8 @@ const config: SocketIoConfig = {
     FindTeamComponent,
     FindTeammateComponent,
     QuestionsComponent,
+    TeamsComponent,
+    TeammatesComponent,
   ],
   imports: [
     BrowserModule,
