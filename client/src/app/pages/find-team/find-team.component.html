@@ -1,0 +1,12 @@
+works
+
+<div *ngFor="let group of groups">
+    <app-team
+        [isAvailable] = "group.available"
+        [id] = "group.id"
+        [team] = "group.info"
+        (rejectEvent) = "removeGroup($event)"
+    >
+    </app-team>
+</div> 
+

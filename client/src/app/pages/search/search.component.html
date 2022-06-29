@@ -1,50 +1,13 @@
-<div @slideFromTopAndBottom>
-    <div class="split left">
+<div @slideUpDown>
+    <div class="split left" (click)="routeToTeams()">
         <div class="centered">
-            <h2>Find a group</h2>
+            <h2>Find a team</h2>
         </div>
     </div>    
     
-    <div class="split right">
+    <div class="split right" (click)="routeToTeammates()">
         <div class="centered">
             <h2>Find a teammate</h2>
         </div>
     </div>
 </div>
-
-<!-- <div>
-    <button (click)="connectAsPlayer()">
-        Find a team
-    </button>
-</div>
-
-<div>
-    <button (click)="connectAsGroup()">
-        Find a teammate
-    </button>
-</div>
-
-<div>
-    <button (click)="emitRequestForPlayers()">
-        Get some players
-    </button>
-</div>
-
-<div *ngFor="let player of players">
-    <app-teammate
-        [isAvailable] = "player.available"
-        [id] = 'player.id'
-        [teammate] = 'player.info'
-    >
-    </app-teammate>
-</div>
-
-<div *ngFor="let group of groups">
-    <app-team
-        [isAvailable] = "group.available"
-        [id] = "group.id"
-        [team] = "group.info"
-        (rejectEvent) = "removeGroup($event)"
-    >
-    </app-team>
-</div> -->

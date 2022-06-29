@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInfoService } from 'src/app/services/user-info.service';
+import { Router } from '@angular/router';
 import {
   trigger,
-  style,
-  animate,
   transition,
-  query,
+  useAnimation,
 } from '@angular/animations';
-import { Router } from '@angular/router';
+import { settingsEnter } from 'src/app/animations/settingsPageAnimations';
 
 @Component({
   selector: 'app-settings',
@@ -16,19 +15,8 @@ import { Router } from '@angular/router';
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
-        query('.settings', style({ opacity: 0, transform: 'scale(0)' })),
-        query('.settings', 
-          animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 1, transform: 'none' }))
-        )
-      ]),
-      transition(':leave', [
-        query('.settings', style({ opacity: 1 })),
-        query('.settings', 
-          animate('500ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 0 }))
-        )
-      ]),
+        useAnimation(settingsEnter)
+      ])
     ])
   ]
 })

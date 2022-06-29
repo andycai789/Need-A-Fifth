@@ -1,43 +1,43 @@
-<div *ngIf="userInfo.isLoaded">
-    <div @fadeIn>
-        <div class="settings">
-            <div class="title">
-                Settings 
-            </div>
+<div @fadeIn *ngIf="userInfo.isLoaded">
+    <div class="settings">
+        <div class="title">
+            Settings 
+        </div>
+    
+        <div class="settingMode">
+            <span 
+                class="modeButton" 
+                (click)="mode = 'personal'" 
+                [ngStyle]="mode === 'personal' ? {'background-color': '#DF523D'} : {'background-color': 'grey'}">
+                Personal Settings
+            </span>
         
-            <div class="settingMode">
-                <span 
-                    class="modeButton" 
-                    (click)="mode = 'personal'" 
-                    [ngStyle]="mode === 'personal' ? {'background-color': '#DF523D'} : {'background-color': 'grey'}">
-                    Personal Settings
-                </span>
-            
-                <span 
-                    class="modeButton" 
-                    (click)="mode = 'group'" 
-                    [ngStyle]="mode === 'group' ? {'background-color': '#C62828'} : {'background-color': 'grey'}"> 
-                    Group Settings
-                </span>
-            </div><br>
-        
-            <div [hidden]="mode === 'group'">
-                <app-user-settings #userSettings>
-                </app-user-settings>
-            </div>
-        
-            <div [hidden]="mode === 'personal'">
-                <app-group-settings #groupSettings>
-                </app-group-settings>
-            </div>
-        
-            <div class="saveButtonContainer">
-                <span class="saveButton" (click)="userSettings.uploadSettings(); groupSettings.uploadSettings(); navigateToSearch()">
-                    Save Settings
-                </span>
-            </div>
+            <span 
+                class="modeButton" 
+                (click)="mode = 'group'" 
+                [ngStyle]="mode === 'group' ? {'background-color': '#C62828'} : {'background-color': 'grey'}"> 
+                Group Settings
+            </span>
+        </div><br>
+    
+        <div [hidden]="mode === 'group'">
+            <app-user-settings #userSettings>
+            </app-user-settings>
+        </div>
+    
+        <div [hidden]="mode === 'personal'">
+            <app-group-settings #groupSettings>
+            </app-group-settings>
+        </div>
+    
+        <div class="saveButtonContainer">
+            <span class="saveButton" (click)="userSettings.uploadSettings(); groupSettings.uploadSettings(); navigateToSearch()">
+                Save Settings
+            </span>
         </div>
     </div>
 </div>
+
+
 
 

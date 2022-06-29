@@ -23,7 +23,6 @@ h2 {
     cursor: pointer;
 }
 
-
 .right {
     right: 0;
     background-color: #7C6182;
@@ -40,15 +39,4 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-}
-
-.profiles-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.teammates {
-    display: flex;
-    justify-content: center;
 }

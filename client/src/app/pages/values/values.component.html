@@ -1,3 +1,4 @@
+
 <div class="progress-bar">
     <mat-progress-bar class="example-margin"
         [color]="color"
@@ -6,19 +7,20 @@
     </mat-progress-bar>
 </div>
 
-<div @flowUp>
-    <div class="user-values" *ngFor="let value of values let i=index" >
-        <app-user-value
-            [initialAnswer]="answers[i]" 
-            [statement]="value" 
-            [valueIndex]="i" 
-            (opinion)="recordOpinion($event)">
-        </app-user-value>
-    </div>
+<div class="user-values" *ngFor="let value of values let i=index" >
+    <app-user-value
+        [initialAnswer]="answers[i]" 
+        [statement]="value" 
+        [valueIndex]="i" 
+        (opinion)="recordOpinion($event)">
+    </app-user-value>
 </div>
 
-<div @fadeIn class="searchButtonContainer">
+<div class="searchButtonContainer">
     <span class="searchButton slideRight" (click)="submitAnswers()">
         SAVE VALUES
     </span>
 </div>
+
+
+    

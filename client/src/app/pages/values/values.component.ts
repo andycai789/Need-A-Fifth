@@ -2,60 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { UserInfoService } from 'src/app/services/user-info.service';
-import {
-  trigger,
-  style,
-  animate,
-  transition,
-  query,
-  stagger,
-  group,
-} from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-values',
   templateUrl: './values.component.html',
-  styleUrls: ['./values.component.css'],
-  animations: [
-    trigger('flowUp', [
-      transition(':enter', [
-
-        query('.statement', [
-          style({opacity: 0, transform: 'translateY(-300px)' })
-        ]),
-        query('.bubble', [
-          style({opacity: 0, transform: 'translate(0px, -300px)' })
-        ]),
-        query('.divider', [
-          style({opacity: 0, width: '0px', transform: 'translateY(200px)'})
-        ]),
- 
-        group([
-          query('.statement', stagger(500, [
-            animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-              style({ opacity: 1, transform: 'none' }))
-          ])),
-          query('.bubble', stagger(60, [
-            animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-              style({ opacity: 1, transform: 'none' }))
-          ])),
-        ]),
-        query('.divider', stagger(200, [
-          animate('1000ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 1, width: "90%", transform: 'none' }))
-        ])) 
-      ])
-    ]),
-
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({opacity: 0, transform: 'scale(0)' }),
-        animate('400ms cubic-bezier(0.35, 0, 0.25, 1)',
-        style({ opacity: 1, transform: 'none' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./values.component.css']
 })
 export class ValuesComponent implements OnInit {
   values: string[] = [
@@ -71,7 +23,7 @@ export class ValuesComponent implements OnInit {
   mode: ProgressBarMode = 'determinate';
   percentage: number = 0;
 
-  constructor(private userInfo: UserInfoService, private router: Router) { }
+  constructor(public userInfo: UserInfoService, private router: Router) { }
 
   ngOnInit(): void { 
     const answers = this.userInfo.getAnswers();

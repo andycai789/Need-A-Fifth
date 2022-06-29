@@ -1,0 +1,16 @@
+<p>find-teammate works!</p>
+
+<div *ngFor="let player of players">
+    <app-teammate
+        [isAvailable] = "player.available"
+        [id] = 'player.id'
+        [teammate] = 'player.info'
+    >
+    </app-teammate>
+</div>
+
+<div>
+    <button (click)="emitRequestForPlayers()">
+        Get some players
+    </button>
+</div>

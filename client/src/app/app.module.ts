@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchComponent, DialogOverviewExampleDialog } from './pages/search/search.component';
+import { SearchComponent } from './pages/search/search.component';
 
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -32,6 +32,8 @@ import {MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FindTeamComponent } from './pages/find-team/find-team.component';
+import { FindTeammateComponent } from './pages/find-teammate/find-teammate.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 
 const config: SocketIoConfig = {
@@ -61,7 +63,8 @@ const config: SocketIoConfig = {
     ChoicesComponent,
     TeammateComponent,
     TeamComponent,
-    DialogOverviewExampleDialog,
+    FindTeamComponent,
+    FindTeammateComponent,
     QuestionsComponent,
   ],
   imports: [
