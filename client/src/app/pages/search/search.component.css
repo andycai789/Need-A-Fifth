@@ -15,21 +15,21 @@ h2 {
 
 .left {
     left: 0;
-    background-color: #598CAB;
+    background-color: #79B2A1;
 }
 
 .left:hover {
-    background-color: #649dc0;
+    background-color: #85c0ae;
     cursor: pointer;
 }
 
 .right {
     right: 0;
-    background-color: #7C6182;
+    background-color: #C7615C;
 }
 
 .right:hover {
-    background-color: #86698d;
+    background-color: #e96d67;
     cursor: pointer;
 }
 

@@ -11,14 +11,17 @@ import { Router } from '@angular/router';
 })
 export class ValuesComponent implements OnInit {
   values: string[] = [
-    "Value 1",
-    "Value 2",
-    "Value 3",
-    "Value 4",
-    "Value 5",
+    "My rank is important to me.",
+    "After a loss, I can play another game without dwelling on the past.",
+    "I prefer people who can verbally speak to me.",
+    "I do not mind people who communicate through text.",
+    "I tend to critique the gameplay of others.",
+    "I do not mind receiving criticism from others.",
+    "I enjoy playing in a setting where there is a focus on winning.",
+    "I can still enjoy the game even when I am losing.",
   ];
 
-  answers: number[] = Array(this.values.length).fill(-1);
+  answers!: number[];
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';
   percentage: number = 0;
@@ -26,20 +29,12 @@ export class ValuesComponent implements OnInit {
   constructor(public userInfo: UserInfoService, private router: Router) { }
 
   ngOnInit(): void { 
-    const answers = this.userInfo.getAnswers();
-
-    if (answers === undefined) {
-      return;
-    }
-
-    if (answers.length > 0) {
-      this.answers = answers;
-      this.answers.forEach( answer => {
-        if (answer !== -1) {
-          this.percentage += (100 / this.answers.length);
-        }
-      });
-    }
+    this.answers =  this.userInfo.getAnswers();
+    this.answers.forEach( answer => {
+      if (answer !== -1) {
+        this.percentage += (100 / this.answers.length);
+      }
+    });
   }
   
   recordOpinion(e: any): void {

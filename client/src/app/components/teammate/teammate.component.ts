@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { MatChip } from '@angular/material/chips';
 
 interface TeammateInfo {
   rank: string;
@@ -20,6 +21,15 @@ export class TeammateComponent implements OnInit {
   @Input() teammate!: TeammateInfo;
 
   clicked = false;
+  opinionTypes: string[] = [
+    "Strongly Disagree",
+    "Disagree",
+    "Somewhat Disagree",
+    "Neutral",
+    "Somewhat Agree",
+    "Agree",
+    "Strongly Agree"
+  ];
 
   constructor(private socket: Socket) { }
   
@@ -29,6 +39,13 @@ export class TeammateComponent implements OnInit {
 
   sendInvitation(): void {
     this.socket.emit('sendInvitationFromGroup', this.id);
+  }
+
+  convertValueToOpinion(value: any): string {
+    if (value === -1) {
+      return "N/A";
+    }
+    return this.opinionTypes[parseInt(value)];
   }
 
 }

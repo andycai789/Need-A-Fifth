@@ -1,15 +1,38 @@
-.teammate-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
-}
-
 .teammate {
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 30%;
+    background-color: #C7615C;
+    padding: 50px;
+    border-radius: 60px;
+    color: white;
+    font-size: 24px;
 }
+
+.title {
+    text-align: center;
+}
+
+.attributes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.values {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.requestButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+

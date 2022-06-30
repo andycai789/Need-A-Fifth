@@ -32,11 +32,15 @@ import {MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 import { FindTeamComponent } from './pages/find-team/find-team.component';
 import { FindTeammateComponent } from './pages/find-teammate/find-teammate.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { TeammatesComponent } from './pages/teammates/teammates.component';
+import { CurrentSettingsComponent } from './components/current-settings/current-settings.component';
+
 
 const config: SocketIoConfig = {
 	url: env.socketUrl,
@@ -70,6 +74,7 @@ const config: SocketIoConfig = {
     QuestionsComponent,
     TeamsComponent,
     TeammatesComponent,
+    CurrentSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,8 @@ const config: SocketIoConfig = {
     }),
     SocketIoModule.forRoot(config),
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

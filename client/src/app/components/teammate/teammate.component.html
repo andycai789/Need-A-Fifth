@@ -1,31 +1,32 @@
-<div class="teammate" [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}">
-    <div class="teammate-container">
-        <div>
-            Rank: {{teammate.rank}}
-        </div>
+<!-- [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}" -->
 
-        <div >
-            <div>
-                Gender: {{teammate.gender}}
-            </div>
-        
-            <div>
-                Role: {{teammate.role}}
-            </div>
-        </div>
-    
-        <div>
-            <div>
-                Values:  {{teammate.values}}
-            </div>
-        </div>
-    
-        <div>
-            <button (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
-                Send Request
-            </button>
-        </div>
-    
+<div class="teammate">
+    <div class="title">
+        Player Info
+    </div>
+    <div class="attributes">
+        <mat-chip-list>
+            <mat-chip> {{teammate.gender}} </mat-chip>
+            <mat-chip> {{teammate.rank}} </mat-chip>
+            <mat-chip *ngFor="let role of teammate.role"> {{role}} </mat-chip>
+        </mat-chip-list>
+    </div>
+
+    <div class="title">
+        Values
+    </div>
+    <div class="values">
+        <mat-chip-list>
+            <mat-chip matTooltip="Info about the action" *ngFor="let value of teammate.values"> {{convertValueToOpinion(value)}}</mat-chip>
+        </mat-chip-list>
+    </div>
+
+    <div class="requestButton">
+        <button class="test" (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
+            Send Request
+        </button>
     </div>
 </div>
+
+
 

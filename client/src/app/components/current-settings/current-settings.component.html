@@ -1,0 +1,42 @@
+
+<div class="settingsContainer">
+    <div>
+        {{isFindingTeammate ? 'Your Group Settings' : 'Your Settings'}}
+    </div>
+
+    <div>
+        Riot ID: {{ settings.riotID}} #{{ settings.tagline}}
+    </div>
+    
+    <div *ngIf="isFindingTeammate; else elseBlock">
+        <div>
+            Group's Gender: {{settings.group}}
+        </div>
+        <div>
+            Group's Preference: {{settings.gender}}
+        </div>
+    </div>
+    
+    <ng-template #elseBlock>
+        <div>
+            Your Gender: {{settings.gender}}
+        </div>
+        <div>
+            Your Group Preference: {{settings.group}}
+        </div>
+    </ng-template>
+    
+    <div>
+        Rank: {{settings.rank}}
+    </div>
+    
+    <div>
+        Roles: {{ settings.role}}
+    </div>
+    
+    <span (click)="navigateToSettings()">
+        Change Settings
+    </span>
+    
+</div>
+

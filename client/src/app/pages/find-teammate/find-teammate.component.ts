@@ -13,10 +13,14 @@ export class FindTeammateComponent implements OnInit, OnDestroy {
 
   players: any[] = [];
 
+  groupSettings: any;
+
   constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.connectAsGroup();
+    this.groupSettings = this.user.getGroupSettings();
+    console.log(this.groupSettings);
   }
 
   ngOnDestroy(): void {
