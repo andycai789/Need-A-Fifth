@@ -12,8 +12,8 @@ export class GroupSettingsComponent implements OnInit {
   tagline: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
-  groupList: string[] = ['All Female', 'All Male', 'Mixed'];
-  genderList: string[] = ['Female', 'Male', 'Other'];
+  groupList: string[] = ['All Male', 'All Female', 'Mixed'];
+  genderList: string[] = ['Male', 'Female', 'Other'];
   roleList: string[] = ['Controller', 'Duelist', 'Initiator', 'Sentinel']
 
   rank: string | string[] = ''

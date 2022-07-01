@@ -1,42 +1,34 @@
-
-<div class="settingsContainer">
+<div class="teammate">
     <div>
         {{isFindingTeammate ? 'Your Group Settings' : 'Your Settings'}}
     </div>
+    <div class="attributes">
+        <mat-chip-list>
+            <mat-chip> {{settings.riotID}} #{{settings.tagline}}</mat-chip>
+            <mat-chip> {{isFindingTeammate ? settings.group : settings.gender}} </mat-chip>
+            <mat-chip> {{settings.rank}} </mat-chip>
+            <mat-chip *ngFor="let role of settings.role"> {{role}} </mat-chip>
+        </mat-chip-list>
+    </div>
 
-    <div>
-        Riot ID: {{ settings.riotID}} #{{ settings.tagline}}
+    <div class="title">
+        Values
     </div>
-    
-    <div *ngIf="isFindingTeammate; else elseBlock">
-        <div>
-            Group's Gender: {{settings.group}}
-        </div>
-        <div>
-            Group's Preference: {{settings.gender}}
-        </div>
+    <div class="values">
+        <mat-chip-list>
+            <mat-chip 
+                *ngFor="let value of shortenedValues; let i = index"
+                [matTooltip]="values[i]" 
+                [class]="getChipColor(answers[i])">
+                    {{value}}: 
+                    {{getOpinionText(answers[i])}}
+            </mat-chip>
+        </mat-chip-list>
     </div>
-    
-    <ng-template #elseBlock>
-        <div>
-            Your Gender: {{settings.gender}}
-        </div>
-        <div>
-            Your Group Preference: {{settings.group}}
-        </div>
-    </ng-template>
-    
-    <div>
-        Rank: {{settings.rank}}
+
+    <div class="changeSettingsButton">
+        <button (click)="navigateToSettings()">
+            Change Settings
+        </button>
     </div>
-    
-    <div>
-        Roles: {{ settings.role}}
-    </div>
-    
-    <span (click)="navigateToSettings()">
-        Change Settings
-    </span>
-    
 </div>
-

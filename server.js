@@ -15,8 +15,8 @@ app.get('/userData/:userEmail', async (req, res) => {
       riotID: "YourRiotID",
       tagline: "00000",
       rank: "Iron",
-      gender: "Female",
-      group: "All Female",
+      gender: "Male",
+      group: "All Male",
       role: ["Controller"]
     }
 
@@ -24,8 +24,8 @@ app.get('/userData/:userEmail', async (req, res) => {
       riotID: "YourRiotID",
       tagline: "00000",
       rank: "Iron",
-      group: "All Female",
-      gender: "Female",
+      group: "All Male",
+      gender: "Male",
       role: ["Controller"]
     }
 

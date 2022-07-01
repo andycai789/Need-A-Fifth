@@ -1,6 +1,5 @@
 .teammate {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     background-color: #C7615C;
     border-radius: 20px;
     color: white;
@@ -8,7 +7,6 @@
     padding: 30px 30px;
     max-width: 850px;
     width: 80%;
-
 }
 
 .mat-chip.agree {
@@ -25,7 +23,7 @@
 }
 
 .title {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .valueLabel {
@@ -46,6 +44,7 @@
 
 .requestButton button {
     padding: 20px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 10px;
     border: 0px;
@@ -53,4 +52,5 @@
 
 .requestButton button:hover {
     background-color: rgb(177, 176, 176);
+    cursor: pointer;
 }

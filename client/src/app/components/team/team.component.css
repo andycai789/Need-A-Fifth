@@ -1,6 +1,5 @@
 .team {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     background-color: #79B2A1;
     border-radius: 20px;
     color: white;
@@ -8,7 +7,6 @@
     padding: 30px 30px;
     max-width: 850px;
     width: 80%;
-
 }
 
 .mat-chip.agree {
@@ -25,7 +23,7 @@
 }
 
 .title {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .valueLabel {
@@ -38,19 +36,22 @@
     margin-bottom: 10px;
 }
 
-.requestButton {
+.decisionButtons {
     display: flex;
     justify-content: center;
     margin-top: 40px;
 }
 
-.requestButton button {
+.decisionButtons button {
     padding: 20px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 10px;
     border: 0px;
+    margin: 0px 10px;
 }
 
-.requestButton button:hover {
+.decisionButtons button:hover {
     background-color: rgb(177, 176, 176);
+    cursor: pointer;
 }

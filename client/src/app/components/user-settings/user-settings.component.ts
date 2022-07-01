@@ -12,8 +12,8 @@ export class UserSettingsComponent implements OnInit {
   tagline: string = '';
 
   rankList: string[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Immortal', 'Radiant' ]
-  genderList: string[] = ['Female', 'Male', 'Other'];
-  groupList: string[] = ['All Female', 'All Male', 'Mixed'];
+  genderList: string[] = ['Male', 'Female', 'Other'];
+  groupList: string[] = ['All Male', 'All Female', 'Mixed'];
   roleList: string[] = ['Controller', 'Duelist', 'Initiator', 'Sentinel']
 
   rank: string | string[] = '';

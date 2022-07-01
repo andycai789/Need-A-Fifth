@@ -33,7 +33,7 @@ export const valuesEnter = animation([
     ]),
     query('.divider', stagger(100, [
         animate('700ms cubic-bezier(0.35, 0, 0.25, 1)',
-            style({ opacity: 1, width: "90%"}))
+            style({ opacity: 1, width: "70%"}))
     ]))
 ])
 
