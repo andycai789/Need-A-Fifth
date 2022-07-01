@@ -1,6 +1,4 @@
-<!-- [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}" -->
-
-<div class="teammate">
+<div class="teammate" *ngIf="isAvailable; else elseBlock">
     <div>
         Player Info
     </div>
@@ -27,12 +25,15 @@
         </mat-chip-list>
     </div>
 
-    <div class="requestButton">
+    <div class="inviteButton">
         <button (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
-            Send Request
+            Send Invitation
         </button>
     </div>
 </div>
 
-
-
+<ng-template #elseBlock>
+    <div class="unavailable">
+        Player is no longer available.
+    </div>
+</ng-template>

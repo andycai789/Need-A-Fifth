@@ -1,4 +1,4 @@
-<div class="team">
+<div class="team" *ngIf="isAvailable; else elseBlock">
     <div>
         Player Info
     </div>
@@ -35,3 +35,8 @@
     </div>
 </div>
 
+<ng-template #elseBlock>
+    <div class="unavailable">
+        Group is no longer available.
+    </div>
+</ng-template>

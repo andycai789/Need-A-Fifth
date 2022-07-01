@@ -77,6 +77,10 @@ export interface DialogData {
 @Component({
   selector: 'app-dialog',
   templateUrl: 'dialog.html',
+  styles: [
+    'button { background-color: black; padding: 10px; margin-top: 10px; color: white; border-radius: 10px; border: 0px;}',
+    'button:hover { background-color: gray; cursor: pointer;}'
+  ]
 })
 export class DialogComponent {
   constructor(
@@ -85,7 +89,7 @@ export class DialogComponent {
     private router: Router
   ) {}
 
-  returnToDashboard(): void {
+  returnToSearch(): void {
     this.dialogRef.close();
     this.router.navigate(['/search']);
   }

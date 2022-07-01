@@ -12,18 +12,25 @@ import { Router } from '@angular/router';
 export class FindTeammateComponent implements OnInit, OnDestroy {
 
   players: any[] = [];
-
   groupSettings: any;
+  requestPlayerInterval: any;
 
-  constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) { }
+  constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.connectAsGroup();
     this.groupSettings = this.user.getGroupSettings();
+
+
+    this.emitRequestForPlayers();
+    this.requestPlayerInterval = setInterval(() => {
+      this.emitRequestForPlayers();
+    }, 10000);
   }
 
   ngOnDestroy(): void {
     this.disconnect();
+    clearInterval(this.requestPlayerInterval);
   }
 
   connectAsGroup(): void {
@@ -76,6 +83,10 @@ export interface DialogData {
 @Component({
   selector: 'app-dialog',
   templateUrl: 'dialog.html',
+  styles: [
+    'button { background-color: black; padding: 10px; margin-top: 10px; color: white; border-radius: 10px; border: 0px;}',
+    'button:hover { background-color: gray; cursor: pointer;}'
+  ]
 })
 export class DialogComponent {
   constructor(
@@ -84,7 +95,7 @@ export class DialogComponent {
     private router: Router
   ) {}
 
-  returnToDashboard(): void {
+  returnToSearch(): void {
     this.dialogRef.close();
     this.router.navigate(['/search']);
   }
