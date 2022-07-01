@@ -13,11 +13,13 @@ export class FindTeamComponent implements OnInit, OnDestroy {
 
   groups: any[] = [];
 
+  userSettings: any;
+
   constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.connectAsPlayer();
-
+    this.userSettings = this.user.getUserSettings();
   }
 
   ngOnDestroy(): void {

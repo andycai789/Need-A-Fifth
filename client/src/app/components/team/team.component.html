@@ -1,32 +1,37 @@
-<div class="team" [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}">
-    <div class="team-container">
-        <div>
-            Rank: {{team.rank}}
-        </div>
+<div class="team">
+    <div>
+        Player Info
+    </div>
+    <div class="attributes">
+        <mat-chip-list>
+            <mat-chip> {{team.gender}} </mat-chip>
+            <mat-chip> {{team.rank}} </mat-chip>
+            <mat-chip *ngFor="let role of team.role"> {{role}} </mat-chip>
+        </mat-chip-list>
+    </div>
 
-        <div >
-            <div>
-                Gender: {{team.group}}
-            </div>
-        
-            <div>
-                Role: {{team.role}}
-            </div>
-        </div>
-    
-        <div>
-            <div>
-                Values: {{team.values}}
-            </div>
-        </div>
-    
-        <div>
-            <button (click)="acceptInvitation()">
-                Accept
-            </button>
-            <button (click)="rejectInvitation()">
-                Reject
-            </button>
-        </div>
+    <div class="title">
+        Values
+    </div>
+    <div class="values">
+        <mat-chip-list>
+            <mat-chip 
+                *ngFor="let value of shortenedValues; let i = index"
+                [matTooltip]="values[i]" 
+                [class]="getChipColor(team.values[i])">
+                    {{value}}: 
+                    {{getOpinionText(team.values[i])}}
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+
+    <div class="requestButton">
+        <button (click)="acceptInvitation()">
+            Accept
+        </button>
+        <button (click)="rejectInvitation()">
+            Reject
+        </button>
     </div>
 </div>
+

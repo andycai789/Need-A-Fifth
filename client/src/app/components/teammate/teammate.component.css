@@ -1,38 +1,56 @@
 .teammate {
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
     background-color: #C7615C;
-    padding: 50px;
-    border-radius: 60px;
+    border-radius: 20px;
     color: white;
     font-size: 24px;
+    padding: 30px 30px;
+    max-width: 850px;
+    width: 80%;
+
 }
 
-.title {
-    text-align: center;
+.mat-chip.agree {
+    background-color: rgb(62, 165, 62) !important; 
+}
+
+.mat-chip.disagree {
+    background-color: rgb(196, 66, 66) !important; 
 }
 
 .attributes {
     margin-top: 10px;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
+}
+
+.title {
+    margin-top: 50px;
+}
+
+.valueLabel {
+    font-size: 20px;
+    padding-left: 10px;
 }
 
 .values {
     margin-top: 10px;
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .requestButton {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
+.requestButton button {
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0px;
+}
 
-
+.requestButton button:hover {
+    background-color: rgb(177, 176, 176);
+}

@@ -33,6 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatIconModule} from '@angular/material/icon';
 
 import { FindTeamComponent } from './pages/find-team/find-team.component';
 import { FindTeammateComponent } from './pages/find-teammate/find-teammate.component';
@@ -91,6 +92,7 @@ const config: SocketIoConfig = {
     FormsModule,
     MatDialogModule,
     MatTooltipModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

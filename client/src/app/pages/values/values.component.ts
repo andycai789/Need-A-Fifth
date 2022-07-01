@@ -15,8 +15,6 @@ export class ValuesComponent implements OnInit {
     "After a loss, I can play another game without dwelling on the past.",
     "I prefer people who can verbally speak to me.",
     "I do not mind people who communicate through text.",
-    "I tend to critique the gameplay of others.",
-    "I do not mind receiving criticism from others.",
     "I enjoy playing in a setting where there is a focus on winning.",
     "I can still enjoy the game even when I am losing.",
   ];

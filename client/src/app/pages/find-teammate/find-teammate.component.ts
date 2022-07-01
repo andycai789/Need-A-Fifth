@@ -20,7 +20,6 @@ export class FindTeammateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.connectAsGroup();
     this.groupSettings = this.user.getGroupSettings();
-    console.log(this.groupSettings);
   }
 
   ngOnDestroy(): void {

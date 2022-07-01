@@ -31,7 +31,7 @@ app.get('/userData/:userEmail', async (req, res) => {
 
     db.upsertUserSettings(req.params.userEmail, {userSettings});
     db.upsertUserSettings(req.params.userEmail, {groupSettings});
-    db.upsertUserAnswers(req.params.userEmail, [-1,-1,-1,-1,-1,-1,-1,-1]);
+    db.upsertUserAnswers(req.params.userEmail, [-1,-1,-1,-1,-1,-1]);
 
     let defaultSettings = await db.getUserInfo(req.params.userEmail);
     res.json(defaultSettings);

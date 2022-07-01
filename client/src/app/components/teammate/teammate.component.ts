@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { MatChip } from '@angular/material/chips';
 
 interface TeammateInfo {
   rank: string;
@@ -22,30 +21,58 @@ export class TeammateComponent implements OnInit {
 
   clicked = false;
   opinionTypes: string[] = [
-    "Strongly Disagree",
+    "Disagree Strongly",
     "Disagree",
-    "Somewhat Disagree",
+    "Disagree Somewhat",
     "Neutral",
-    "Somewhat Agree",
+    "Agree Somewhat",
     "Agree",
-    "Strongly Agree"
+    "Agree Strongly"
+  ];
+
+  values: string[] = [
+    "My rank is important to me.",
+    "After a loss, I can play another game without dwelling on the past.",
+    "I prefer people who can verbally speak to me.",
+    "I do not mind people who communicate through text.",
+    "I enjoy playing in a setting where there is a focus on winning.",
+    "I can still enjoy the game even when I am losing.",
+  ];
+
+  shortenedValues: string[] = [
+    "Rank Important",
+    "Untiltable",
+    "Must have a mic",
+    "Will read chat",
+    "Competitive",
+    "Casual",
   ];
 
   constructor(private socket: Socket) { }
   
   ngOnInit(): void {
-
   }
 
   sendInvitation(): void {
     this.socket.emit('sendInvitationFromGroup', this.id);
   }
 
-  convertValueToOpinion(value: any): string {
+  getOpinionText(value: any): string {
     if (value === -1) {
       return "N/A";
     }
     return this.opinionTypes[parseInt(value)];
   }
 
+  getChipColor(value: any): string {
+    value = parseInt(value);
+
+    if (value < 0 || value === 3) {
+      return "";
+    } else if (value < 3) {
+      return "disagree";
+    } else {
+      return "agree";
+    }
+  }
 }

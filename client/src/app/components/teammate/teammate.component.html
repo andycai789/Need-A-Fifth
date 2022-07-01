@@ -1,7 +1,7 @@
 <!-- [ngStyle]="{'background-color': (isAvailable) ? 'green' : 'red'}" -->
 
 <div class="teammate">
-    <div class="title">
+    <div>
         Player Info
     </div>
     <div class="attributes">
@@ -17,12 +17,18 @@
     </div>
     <div class="values">
         <mat-chip-list>
-            <mat-chip matTooltip="Info about the action" *ngFor="let value of teammate.values"> {{convertValueToOpinion(value)}}</mat-chip>
+            <mat-chip 
+                *ngFor="let value of shortenedValues; let i = index"
+                [matTooltip]="values[i]" 
+                [class]="getChipColor(teammate.values[i])">
+                    {{value}}: 
+                    {{getOpinionText(teammate.values[i])}}
+            </mat-chip>
         </mat-chip-list>
     </div>
 
     <div class="requestButton">
-        <button class="test" (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
+        <button (click)='sendInvitation(); clicked=true' [disabled]="clicked"> 
             Send Request
         </button>
     </div>

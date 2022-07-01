@@ -1,4 +1,9 @@
 
+<app-current-settings [isFindingTeammate]="true" [settings]="userSettings">
+
+</app-current-settings>
+
+
 <div *ngFor="let group of groups">
     <app-team
         [isAvailable] = "group.available"
