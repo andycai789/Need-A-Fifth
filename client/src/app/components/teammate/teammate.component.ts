@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 interface TeammateInfo {
   rank: string;
@@ -20,37 +21,16 @@ export class TeammateComponent implements OnInit {
   @Input() teammate!: TeammateInfo;
 
   clicked = false;
-  opinionTypes: string[] = [
-    "Disagree Strongly",
-    "Disagree",
-    "Disagree Somewhat",
-    "Neutral",
-    "Agree Somewhat",
-    "Agree",
-    "Agree Strongly"
-  ];
+  opinionTypes!: string[] 
+  values!: string[] 
+  shortenedValues!: string[] 
 
-  values: string[] = [
-    "My rank is important to me.",
-    "After a loss, I can play another game without dwelling on the past.",
-    "I prefer people who can verbally speak to me.",
-    "I do not mind people who communicate through text.",
-    "I enjoy playing in a setting where there is a focus on winning.",
-    "I can still enjoy the game even when I am losing.",
-  ];
-
-  shortenedValues: string[] = [
-    "Rank Important",
-    "Untiltable",
-    "Must have a mic",
-    "Will read chat",
-    "Competitive",
-    "Casual",
-  ];
-
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket, private userInfo: UserInfoService) { }
   
   ngOnInit(): void {
+    this.opinionTypes = this.userInfo.opinionTypes;
+    this.values = this.userInfo.values;
+    this.shortenedValues = this.userInfo.shortenedValues;
   }
 
   sendInvitation(): void {

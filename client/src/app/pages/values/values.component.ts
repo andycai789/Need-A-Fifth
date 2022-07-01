@@ -10,15 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./values.component.css']
 })
 export class ValuesComponent implements OnInit {
-  values: string[] = [
-    "My rank is important to me.",
-    "After a loss, I can play another game without dwelling on the past.",
-    "I prefer people who can verbally speak to me.",
-    "I do not mind people who communicate through text.",
-    "I enjoy playing in a setting where there is a focus on winning.",
-    "I can still enjoy the game even when I am losing.",
-  ];
-
+  values!: string[];
   answers!: number[];
   color: ThemePalette = 'primary';
   mode: ProgressBarMode = 'determinate';
@@ -26,7 +18,8 @@ export class ValuesComponent implements OnInit {
 
   constructor(public userInfo: UserInfoService, private router: Router) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    this.values = this.userInfo.values;
     this.answers =  this.userInfo.getAnswers();
     this.answers.forEach( answer => {
       if (answer !== -1) {

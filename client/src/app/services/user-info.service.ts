@@ -9,6 +9,34 @@ export class UserInfoService {
   email!: string;
   info!: any;
   isLoaded: boolean = false;
+  
+  opinionTypes: string[] = [
+    "Disagree Strongly",
+    "Disagree",
+    "Disagree Somewhat",
+    "Neutral",
+    "Agree Somewhat",
+    "Agree",
+    "Agree Strongly"
+  ];
+
+  values: string[] = [
+    "My rank is important to me.",
+    "After a loss, I can play another game without dwelling on the past.",
+    "I prefer people who can verbally speak to me.",
+    "I do not mind people who communicate through text.",
+    "I enjoy playing in a setting where there is a focus on winning.",
+    "I can still enjoy the game even when I am losing.",
+  ];
+
+  shortenedValues: string[] = [
+    "Rank Important",
+    "Untiltable",
+    "Must have a mic",
+    "Will read chat",
+    "Competitive",
+    "Casual",
+  ];
 
   constructor(private auth: AuthService) { 
     this.auth.user$.subscribe(user => {
