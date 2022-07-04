@@ -150,7 +150,7 @@ h1 {
 @media (max-width: 1060px) {
 
     .sectionContainer {
-        padding-bottom: 0px;
+        padding-bottom: 50px;
     }
 
     .sectionContentRight {
