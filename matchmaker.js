@@ -65,6 +65,10 @@ class Matchmaker {
     }
 
     getNPlayers(id, n) {
+        if (!this.idToPool.has(id)) {
+            return [];
+        }
+
         const gender = this.getGenderFromID(id);
         const group = this.getGroupFromID(id);
         const seenPlayers = this.idToPool.get(id).seenPlayers;

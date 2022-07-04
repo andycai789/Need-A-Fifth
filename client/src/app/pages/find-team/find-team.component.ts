@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class FindTeamComponent implements OnInit, OnDestroy {
 
   groups: any[] = [];
-
   userSettings: any;
+  audio = new Audio("./../../../assets/audio/sound.mp4");
 
   constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) { }
 
@@ -32,12 +32,13 @@ export class FindTeamComponent implements OnInit, OnDestroy {
     this.socket.emit("playerOnline", {...this.user.info.userSettings, values: this.user.info.answers});
     
     this.socket.on('sendInvitationToPlayer', (newGroup: any) => {
-      console.log(newGroup);
       this.groups = this.groups.concat(newGroup);
+      this.audio.play();
     });
 
     this.socket.on("sendAcceptanceToPlayer", (groupRiotID: string, groupTagline: string) => {
       this.openDialog(groupRiotID, groupTagline);
+      this.audio.play();
       this.disconnect();
     });
 

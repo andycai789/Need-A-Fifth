@@ -19,7 +19,6 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { FormsModule } from '@angular/forms';
-import { PhotoComponent } from './components/photo/photo.component';
 import { GroupSettingsComponent } from './components/group-settings/group-settings.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { ChoicesComponent } from './components/choices/choices.component';
@@ -64,7 +63,6 @@ const config: SocketIoConfig = {
     LogoutButtonComponent,
     ProfileComponent,
     SettingsComponent,
-    PhotoComponent,
     GroupSettingsComponent,
     UserSettingsComponent,
     ChoicesComponent,

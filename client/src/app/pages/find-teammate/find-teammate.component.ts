@@ -14,6 +14,7 @@ export class FindTeammateComponent implements OnInit, OnDestroy {
   players: any[] = [];
   groupSettings: any;
   requestPlayerInterval: any;
+  audio = new Audio("./../../../assets/audio/sound.mp4");
 
   constructor(private user: UserInfoService, private socket: Socket, public dialog: MatDialog) {}
 
@@ -21,11 +22,10 @@ export class FindTeammateComponent implements OnInit, OnDestroy {
     this.connectAsGroup();
     this.groupSettings = this.user.getGroupSettings();
 
-
     this.emitRequestForPlayers();
     this.requestPlayerInterval = setInterval(() => {
       this.emitRequestForPlayers();
-    }, 10000);
+    }, 5000);
   }
 
   ngOnDestroy(): void {
@@ -39,12 +39,15 @@ export class FindTeammateComponent implements OnInit, OnDestroy {
     this.socket.emit("groupOnline", {...this.user.info.groupSettings, values: this.user.info.answers});
     
     this.socket.on('sendPlayersToGroup', (newPlayers: any) => {
-      console.log(newPlayers);
-      this.players = this.players.concat(newPlayers);
+      if (newPlayers.length !== 0) {
+        this.players = this.players.concat(newPlayers);
+        this.audio.play();
+      }
     });
 
     this.socket.on('sendAcceptanceToGroup', (playerRiotID: string, playerTagline: string) => {
       this.openDialog(playerRiotID, playerTagline);
+      this.audio.play();
       this.disconnect();
     });
 
