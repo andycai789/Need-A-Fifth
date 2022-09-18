@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('./mdb');
 db.init();
 
 const express = require('express');
