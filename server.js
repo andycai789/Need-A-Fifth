@@ -4,8 +4,11 @@ db.init();
 const express = require('express');
 const app = express();
 const port = 3000;
+const path = require('path')
 
 app.use(express.json());
+
+app.use(express.static('./client/dist/project-f'))
 
 app.get('/userData/:userEmail', async (req, res) => {
   let result = await db.getUserInfo(req.params.userEmail);
