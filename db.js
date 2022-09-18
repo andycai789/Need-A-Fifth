@@ -1,6 +1,6 @@
 const { MongoClient, GridFSBucket } = require('mongodb')
 require('dotenv').config();
-a
+
 const url = process.env.MONGO_DB_URL;
 const client = new MongoClient(url);
 
