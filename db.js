@@ -1,6 +1,7 @@
 const { MongoClient, GridFSBucket } = require('mongodb')
+require('dotenv').config();
 
-const url = "mongodb+srv://Me:XHD1QCGaBf7i6LLl@cluster0.rutxd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const url = process.env.MONGO_DB_URL;
 const client = new MongoClient(url);
 
 async function init() {
