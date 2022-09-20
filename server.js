@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use(express.static('./client/dist/project-f'))
+app.use(express.static('./dist'))
 
 app.get('/userData/:userEmail', async (req, res) => {
   let result = await db.getUserInfo(req.params.userEmail);
