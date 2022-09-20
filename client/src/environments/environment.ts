@@ -9,7 +9,7 @@ export const environment = {
         clientId: "DecRFyXif4z1OGnlvzpFIuBJvkeUVRVL",
         redirectUri: window.location.origin
     },
-    socketUrl: 'http://localhost:3000'
+    socketUrl: window.location.origin
 }
 /*
  * For easier debugging in development mode, you can import the following file
